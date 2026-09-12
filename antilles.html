@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="description" content="Découvrez le projet Les Antilles de Jonzac - Campagne fictive sur le portfolio d'Elya Prugnières. Stratégie de communication, design visuel et gestion de projets.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elya Prugnieres | Les Antilles de Jonzac - Campagne fictive</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rye&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="performance.js" defer></script>
+</head>
+
+<body>
+    <!-- Background Layers -->
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Intro Animation / Loader -->
+
+
+        <!-- Navigation -->
+        <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="index.html#photos">Mes Photos</a>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Expériences</span>
+                <div class="nav-dropdown-menu">
+                    <a href="adresse.html" class="">Groupe Adresse : Service Civique</a>
+                    <a href="charente.html" class="">Charente Libre</a>
+                    <a href="corderie.html" class="">Corderie Royale</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle active">Mes Projets</span>
+                <div class="nav-dropdown-menu">
+                    <a href="aquarium.html" class="">Aquarium de La Rochelle - Campagne Fictive</a>
+                    <a href="antilles.html" class="active">Les Antilles de Jonzac - Campagne fictive</a>
+                    <a href="antares.html" class="">Antares - Campagne fictive</a>
+                    <a href="cgr.html" class="">CGR Cinéma - Campagne fictive</a>
+                    <a href="hopital.html" class="">Hopital des 15-20 - Exercice graphique</a>
+                    <a href="koel.html" class="">Centre Koel - Exercice pratique</a>
+                </div>
+            </div>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Project Detail Section -->
+    <section id="experiences" class="section" style="padding-top: 140px;">
+        <div class="container text-center">
+            <div style="max-width: 1000px; margin: 0 auto; text-align: left; padding-top: 2rem;">
+                <a href="index.html#projects" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </a>
+            </div>
+
+            <h2 class="project-detail-title">Les Antilles de Jonzac</h2>
+
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <div id="project-antilles-intro" class="project-detail-layout">
+                    <!-- Left: Scrolling Assets -->
+                    <div class="project-detail-scrolling">
+                        <div class="asset-block">
+                            <img src="assets/Projet Antilles/identite visuelle.png" alt="Identité visuelle" style="width: 100%; border-radius: 12px;">
+                        </div>
+
+                        <!-- Publications Instagram -->
+                        <h5 style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #523928; font-size: 1.1rem; margin: 40px 0 0 0; text-transform: uppercase;">Publications Instagram</h5>
+                        <div class="asset-block" style="margin-bottom: 40px;">
+                            <img src="assets/Projet Antilles/post instagram.png" alt="Publications Instagram" style="width: 100%; border-radius: 12px;">
+                        </div>
+
+                        <!-- Video & Description Wrapper -->
+                        <div style="width: 426px; max-width: 100%; display: flex; flex-direction: column; margin-top: 30px;">
+                            <!-- Video -->
+                            <div class="project-video-container" style="margin-top: 0; width: 100%;"
+                                onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+                                <video preload="none" id="project-video"
+                                    data-src="assets/Projet Antilles/video.mp4" loop
+                                    playsinline style="width: 100%; display: block; border-radius: 12px;"></video>
+
+                                <button class="mute-btn"
+                                    onclick="event.stopPropagation(); toggleMute('project-video', 'mute-icon')">
+                                    <i id="mute-icon" class="fas fa-volume-mute"></i>
+                                </button>
+                                <div class="video-overlay">
+                                    <div class="play-button">
+                                        <svg viewBox="0 0 24 24" fill="white" width="48" height="48">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 10px; font-size: 0.85rem; color: #888; font-style: italic; text-align: center; margin-bottom: 50px;">
+                                Vidéo promotionnelle - Capsule de présentation "Les Antilles de Jonzac"
+                            </div>
+                        </div>
+
+                        <!-- Flyer promotionnel -->
+                        <h5 style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #523928; font-size: 1.1rem; margin: 40px 0 15px 0; text-transform: uppercase;">Flyer promotionnel</h5>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;">
+                            <img src="assets/Projet Antilles/flyer recto.png" alt="Flyer Recto" style="width: 100%; height: 500px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                            <img src="assets/Projet Antilles/verso flyer.png" alt="Flyer Verso" style="width: 100%; height: 500px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        </div>
+
+                        <!-- Affiches de la campagne -->
+                        <h5 style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #523928; font-size: 1.1rem; margin: 40px 0 15px 0; text-transform: uppercase;">Affiches de la campagne</h5>
+                        <div class="asset-block" style="margin-bottom: 30px;">
+                            <img src="assets/Projet Antilles/Les Antilles de Jonzac.png" alt="Les Antilles de Jonzac - Affiche 1" style="width: 100%; border-radius: 12px;">
+                        </div>
+                        <div class="asset-block" style="margin-bottom: 30px;">
+                            <img src="assets/Projet Antilles/Les Antilles de Jonzac affiche 2.png" alt="Les Antilles de Jonzac - Affiche 2" style="width: 100%; border-radius: 12px;">
+                        </div>
+
+                        <!-- Note d'intention PDF -->
+                        <h5 style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #523928; font-size: 1.1rem; margin: 40px 0 15px 0; text-transform: uppercase;">Note d'intention</h5>
+                        <div style="display: flex; flex-direction: column; margin-bottom: 50px;">
+                            <div style="width: 100%; aspect-ratio: 210 / 297; border-radius: 12px; overflow-y: auto; border: 1px solid rgba(82,57,40,0.1); margin-bottom: 16px; background: #fdfaf7; direction: rtl;">
+                                <div style="direction: ltr;">
+                                    <iframe src="assets/Projet Antilles/note intention.pdf#toolbar=0&navpanes=0"
+                                            style="width: 100%; height: 1050px; border: none; display: block;"></iframe>
+                                </div>
+                            </div>
+                            <a href="assets/Projet Antilles/note intention.pdf" class="experience-btn" download style="display: inline-block; text-decoration: none; border-radius: 30px; align-self: center;">
+                                <i class="fas fa-file-pdf"></i> Télécharger la note d'intention
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Sticky Text -->
+                    <div class="project-detail-sticky">
+                        <h4>À propos du projet</h4>
+                        <p>
+                            Ce projet est une <strong>campagne de communication fictive</strong> réalisée pour le centre aquatique <strong>Les Antilles de Jonzac</strong>, situé en <strong>Charente-Maritime</strong>, dans le cadre d'une <strong>recherche de stage pour mon BTS de communication</strong>. L'objectif est de démontrer mes compétences en <strong>stratégie de communication</strong> et d'illustrer mon univers à travers un projet concret.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Objectifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            Cette campagne repose sur un concept fort : <strong>« Les Antilles sans quitter la France »</strong>, qui vise à valoriser le site unique des Antilles de Jonzac.
+                        </p>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;">Développer l'<strong>attractivité territoriale</strong> de l'établissement et en faire une <strong>destination d'évasion, de déconnexion et de ressourcement</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;">Valoriser la <strong>diversité des prestations</strong> du site pour <strong>stimuler le trafic des visiteurs</strong>.</li>
+                        </ul>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Cibles</h5>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;"><strong>Cible principale :</strong> Les <strong>locaux et habitants de la Charente-Maritime</strong> et des départements limitrophes, à la recherche d'une <strong>parenthèse détente à proximité</strong> de chez eux.</li>
+                            <li style="margin-bottom: 0.6rem;"><strong>Cible secondaire :</strong> Les <strong>vacanciers séjournant dans la région</strong>, pour qui les Antilles de Jonzac constituent une <strong>étape de loisirs et de bien-être</strong> pendant leur séjour.</li>
+                        </ul>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Moyens</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            J'ai choisi de partir sur une <strong>stratégie 360° mix-média</strong> avec plusieurs types de formats :
+                        </p>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;">Un <strong>flyer</strong> et des <strong>affiches de campagne</strong> diffusés dans les villes alentours et les <strong>offices de tourisme</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;">Un <strong>post Instagram</strong> et une <strong>vidéo</strong> postée sur les réseaux sociaux (<strong>Facebook et Instagram</strong>) pour maximiser la <strong>visibilité digitale</strong>.</li>
+                        </ul>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Choix Créatifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            Le choix s'est porté sur une <strong>promesse forte et engageante</strong> : <em>« Vivez une expérience tropicale, sans prendre l'avion »</em>. Cet axe joue sur le <strong>contraste entre l'exotisme de l'expérience et la simplicité d'accès</strong>.
+                        </p>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+                            L'univers visuel est <strong>bicolore et chaleureux</strong> — <strong>jaune solaire</strong> et teintes <strong>aquatiques (bleu, turquoise foncé)</strong> — pour rester cohérent avec le site et susciter immédiatement le désir d'immersion.
+                        </p>
+
+                        <!-- Évaluation -->
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #fdfaf7; border-radius: 12px; border: 1px solid rgba(82,57,40,0.1);">
+                            <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Évaluation</h5>
+                            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #4caf50; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">✓</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Point fort —</strong> L'utilisation de <strong>visuels directement inspirés du site</strong> renforce la crédibilité de la campagne. Bien que j'aie utilisé des <strong>images libres de droits</strong>, l'adaptation à l'univers visuel du site optimise la <strong>cohérence et la crédibilité</strong> de la communication, et ainsi les résultats potentiels de la campagne.
+                                    </p>
+                                </div>
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #f2a501; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">→</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Axe d'amélioration —</strong> Intégrer de <strong>vraies photos et vidéos du site</strong> à la place des images libres de droits renforcerait encore davantage l'<strong>authenticité et la crédibilité</strong> de la campagne, et maximiserait son impact auprès des cibles.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mockups Section -->
+    <section style="padding: 4rem 0 5rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <h4 style="font-family: 'Rye', serif; color: #523928; font-size: 1.6rem; text-transform: uppercase; text-align: center; margin-bottom: 2.5rem;">Mockups</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;">
+                <img src="assets/Projet Antilles/mockup 1.png" alt="Mockup 1" style="width: 100%; border-radius: 14px; box-shadow: 0 8px 28px rgba(0,0,0,0.10);">
+                <img src="assets/Projet Antilles/mockup 2.png" alt="Mockup 2" style="width: 100%; border-radius: 14px; box-shadow: 0 8px 28px rgba(0,0,0,0.10);">
+                <img src="assets/Projet Antilles/mockup 3.png" alt="Mockup 3" style="width: 100%; border-radius: 14px; box-shadow: 0 8px 28px rgba(0,0,0,0.10);">
+            </div>
+        </div>
+    </section>
+
+    <!-- All Projects Button -->
+    <div class="project-nav-footer">
+        <a href="index.html#projects" class="all-projects-btn">
+            Voir tous les projets
+        </a>
+    </div>
+
+    <footer class="text-center p-4">
+        <p>&copy; 2026 Elya Prugnieres. Portfolio Western Moderne.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Navbar scroll logic
+        const pageNavbar = document.querySelector('.navbar');
+        if (pageNavbar) {
+            let lastScrollY = window.scrollY;
+            let isVisible = true;
+
+            gsap.set(pageNavbar, { yPercent: 0, opacity: 1 });
+            pageNavbar.classList.remove('navbar-hidden');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                const atTop = currentScrollY < 80;
+
+                if (atTop || currentScrollY < lastScrollY) {
+                    if (!isVisible) {
+                        isVisible = true;
+                        pageNavbar.classList.remove('navbar-hidden');
+                        gsap.to(pageNavbar, { yPercent: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
+                    }
+                } else {
+                    if (isVisible) {
+                        isVisible = false;
+                        gsap.to(pageNavbar, { yPercent: -100, opacity: 0, duration: 0.4, ease: 'power2.in' });
+                    }
+                }
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Project pinning animation
+        const stickyBlock = document.querySelector('.project-detail-sticky');
+        const layout = document.querySelector('.project-detail-layout');
+
+        if (stickyBlock && layout) {
+            ScrollTrigger.create({
+                trigger: stickyBlock,
+                start: "bottom bottom-=80px",
+                endTrigger: layout,
+                end: "bottom bottom",
+                pin: true,
+                pinSpacing: false,
+                pinType: "transform",
+                anticipatePin: 1,
+                id: "project-antilles-pin",
+                invalidateOnRefresh: true
+            });
+        }
+
+        // Convert vertical wheel to horizontal scroll on galleries
+        const galleries = document.querySelectorAll('.b-outils-gallery');
+        galleries.forEach(gallery => {
+            gallery.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    gallery.scrollLeft += e.deltaY * 1.5;
+                }
+            }, { passive: false });
+        });
+    </script>
+
+<script src="js/preload.js" defer></script>
+</body>
+
+</html>
