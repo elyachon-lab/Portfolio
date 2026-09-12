@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="description" content="Découvrez le projet POSTS Tout savoir sur le métier - Service Civique sur le portfolio d'Elya Prugnières. Stratégie de communication, design visuel et gestion de projets.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elya Prugnieres | POSTS Tout savoir sur le métier - Service Civique</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rye&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="performance.js" defer></script>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="index.html#photos">Mes Photos</a>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle active">Mes Expériences</span>
+                <div class="nav-dropdown-menu">
+                    <a href="adresse.html" class="active">Groupe Adresse : Service Civique</a>
+                    <a href="charente.html" class="">Charente Libre</a>
+                    <a href="corderie.html" class="">Corderie Royale</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Projets</span>
+                <div class="nav-dropdown-menu">
+                    <a href="aquarium.html" class="">Aquarium de La Rochelle - Campagne Fictive</a>
+                    <a href="antilles.html" class="">Les Antilles de Jonzac - Campagne fictive</a>
+                    <a href="antares.html" class="">Antares - Campagne fictive</a>
+                    <a href="cgr.html" class="">CGR Cinéma - Campagne fictive</a>
+                    <a href="hopital.html" class="">Hopital des 15-20 - Exercice graphique</a>
+                    <a href="koel.html" class="">Centre Koel - Exercice pratique</a>
+                </div>
+            </div>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Project Detail Section -->
+    <section id="experiences" class="section">
+        <div class="container text-center">
+            <div style="max-width: 1000px; margin: 0 auto; text-align: left; padding-top: 2rem;">
+                <a href="adresse.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </a>
+            </div>
+
+            <h2 class="project-detail-title">POSTS Tout savoir sur le métier</h2>
+
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <div id="project-boite-outils-intro" class="project-detail-layout">
+                    <!-- Left: Scrolling Assets -->
+                    <div class="project-detail-scrolling">
+                        <div class="asset-block">
+                            <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Mockup projet 3.png"
+                                alt="Mockup Projet 3" style="width: 100%;">
+                        </div>
+
+                        <!-- Monteur d'ouvrage gallery -->
+                        <div class="b-outils-gallery" id="monteur-gallery">
+                            <div class="b-outils-track">
+                                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier monteur d'ouvrage1.jpg"
+                                    alt="Monteur d'ouvrage 1">
+                                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier monteur d'ouvrage2.jpg"
+                                    alt="Monteur d'ouvrage 2">
+                                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier monteur d'ouvrage3.jpg"
+                                    alt="Monteur d'ouvrage 3">
+                            </div>
+                        </div>
+
+                        <div class="scroll-hint">
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Faites défiler</span> <i class="fas fa-chevron-right"></i>
+                        </div>
+
+                        <!-- Ouvrier de chai gallery -->
+                        <div class="b-outils-gallery" id="ouvrier-chai-gallery">
+                            <div class="b-outils-track">
+                                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/metier ouvrier de chai1.jpg"
+                                    alt="Ouvrier de chai 1">
+                                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/metier ouvrier de chai2.jpg"
+                                    alt="Ouvrier de chai 2">
+                                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier ouvrier de chai3 .jpg"
+                                    alt="Ouvrier de chai 3">
+                            </div>
+                        </div>
+
+                        <div class="scroll-hint">
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Faites défiler</span> <i class="fas fa-chevron-right"></i>
+                        </div>
+
+
+                        <div class="project-video-container"
+                            onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+                            <video preload="none" id="project-video"
+                                data-src="assets/Service Civique/Tout savoir sur le metier projet 3/Tous savoir sur le métier Cariste.mp4"
+                                loop playsinline style="width: 100%; display: block;"></video>
+
+                            <button class="mute-btn"
+                                onclick="event.stopPropagation(); toggleMute('project-video', 'mute-icon')">
+                                <i id="mute-icon" class="fas fa-volume-mute"></i>
+                            </button>
+                            <div class="video-overlay">
+                                <div class="play-button">
+                                    <svg viewBox="0 0 24 24" fill="white" width="48" height="48">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="video-description-block" style="margin-top: 20px; font-size: 0.95rem; line-height: 1.6; color: #555; text-align: left; padding: 15px; background: #faf8f5; border-left: 3px solid #f2a501; border-radius: 4px;">
+                            <p style="margin: 0; font-family: var(--font-text);">
+                                <strong>La capsule vidéo et voix off :</strong> Pour rendre la découverte des métiers plus immersive, j'ai réalisé des vidéos courtes (comme ici pour le métier de cariste) intégrant une voix off. Ce format dynamique réduit l'effort de lecture, facilite la compréhension des tâches et améliore significativement l'engagement du public par rapport aux visuels statiques.
+                            </p>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <div class="project-detail-sticky">
+                        <h4>À propos du projet</h4>
+                        <p>
+                            À mon initiative, une <strong>seconde série de contenus hebdomadaires</strong>, intitulée <strong>« Tout savoir sur le métier »</strong>, a été mise en place afin de présenter de manière claire et attractive <strong>différents métiers</strong> proposés par l'agence.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Objectifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1.2rem;">
+                            L'objectif était d'aider les intérimaires à <strong>découvrir de nouvelles opportunités professionnelles</strong>, notamment des <strong>métiers manuels</strong> souvent méconnus du public. Cette série s'inscrira dans une volonté de <strong>vulgariser un maximum d'informations utiles</strong> pour le public de l'association, tout en augmentant sa visibilité et les interactions.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Cible</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1.2rem;">
+                            La cible reste identique : des <strong>personnes éloignées de l'emploi, âgées de 30 ans et plus</strong>, souhaitant se reconvertir dans des secteurs porteurs afin de saisir de nouvelles opportunités et de se réinsérer durablement sur le marché du travail.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Moyens</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1.2rem;">
+                            J'ai assuré <strong>l'ensemble du processus de création</strong> : de la veille et recherche d'inspirations à la rédaction des contenus, la conception graphique et le montage vidéo sur <strong>Canva</strong>. J'ai également enregistré les <strong>voix off</strong> pour rendre les vidéos les plus dynamiques et accessibles possible. Les contenus ont été publiés sur <strong>Facebook et Instagram</strong> afin de diversifier la communication, d'abord sous forme de <strong>carrousels, puis de vidéos</strong> pour renforcer l'impact des messages.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Évaluation</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1.2rem;">
+                            Ce projet m'a permis de développer mes compétences en <strong>communication visuelle, création de contenus digitaux et montage vidéo</strong>, tout en apprenant à adapter le ton et le format aux publics ciblés. À l'instar de la série « Boîte à outils », cette série hebdomadaire a suscité <strong>davantage d'interactions et de couverture</strong> que les publications classiques, confirmant la cohérence de notre démarche de vulgarisation.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Pistes d'amélioration</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin: 0;">
+                            La création de vidéos avec voix off s'inscrit pleinement dans cette démarche d'amélioration. Initialement conçue sous forme de carrousels statiques, la série s'est heurtée à la densité des informations, qui pouvait parfois surcharger le visuel et décourager le lecteur. Le passage à la vidéo a résolu cette contrainte en offrant un <strong>format plus fluide et engageant</strong>.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Navigation Footer -->
+    <div class="project-nav-footer" style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <a href="boite-a-outils.html" class="all-projects-btn" style="text-decoration: none;">
+            <i class="fas fa-arrow-left"></i> Précédent
+        </a>
+        <a href="adresse.html" class="all-projects-btn" style="text-decoration: none;">
+            Voir tous les projets
+        </a>
+        <a href="projet4.html" class="all-projects-btn" style="text-decoration: none;">
+            Suivant <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    
+
+    <footer class="text-center p-4">
+        <p>&copy; 2026 Elya Prugnieres. Portfolio Western Moderne.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Navbar: visible at top, hide on scroll down, show on scroll up
+        const pageNavbar = document.querySelector('.navbar');
+        if (pageNavbar) {
+            let lastScrollY = window.scrollY;
+            let isVisible = true;
+
+            gsap.set(pageNavbar, { yPercent: 0, opacity: 1 });
+            pageNavbar.classList.remove('navbar-hidden');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                const atTop = currentScrollY < 80;
+
+                if (atTop || currentScrollY < lastScrollY) {
+                    if (!isVisible) {
+                        isVisible = true;
+                        pageNavbar.classList.remove('navbar-hidden');
+                        gsap.to(pageNavbar, { yPercent: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
+                    }
+                } else {
+                    if (isVisible) {
+                        isVisible = false;
+                        gsap.to(pageNavbar, { yPercent: -100, opacity: 0, duration: 0.4, ease: 'power2.in' });
+                    }
+                }
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Project pinning animation
+        const stickyBlock = document.querySelector('.project-detail-sticky');
+        const layout = document.querySelector('.project-detail-layout');
+
+        if (stickyBlock && layout) {
+            ScrollTrigger.create({
+                trigger: stickyBlock,
+                start: "bottom bottom-=80px",
+                endTrigger: layout,
+                end: "bottom bottom",
+                pin: true,
+                pinSpacing: false,
+                pinType: "transform",
+                anticipatePin: 1,
+                id: "project-boite-outils-pin",
+                invalidateOnRefresh: true
+            });
+        }
+
+        // Convert vertical wheel to horizontal scroll on the B outils gallery
+        // Convert vertical wheel events to horizontal scroll on all galleries
+        const galleries = document.querySelectorAll('.b-outils-gallery');
+        galleries.forEach(gallery => {
+            gallery.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    gallery.scrollLeft += e.deltaY * 1.5;
+                }
+            }, { passive: false });
+        });
+    </script>
+    <style>
+        .b-outils-gallery {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            cursor: grab;
+            margin-bottom: 12px;
+        }
+
+        .scroll-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #d1d1d1;
+            font-size: 0.75rem;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .scroll-hint i {
+            font-size: 0.65rem;
+            animation: bounceHorizontal 2s infinite ease-in-out;
+        }
+
+        .scroll-hint i.fa-chevron-left {
+            animation-name: bounceLeft;
+        }
+
+        .scroll-hint i.fa-chevron-right {
+            animation-name: bounceRight;
+        }
+
+        @keyframes bounceLeft {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-4px);
+            }
+        }
+
+        @keyframes bounceRight {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(4px);
+            }
+        }
+
+        .b-outils-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .b-outils-gallery:active {
+            cursor: grabbing;
+        }
+
+        .b-outils-track {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            width: max-content;
+            padding: 8px 0;
+        }
+
+        .b-outils-track img {
+            height: 324px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+    </style>
+
+<script src="js/preload.js" defer></script>
+</body>
+
+</html>
