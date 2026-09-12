@@ -1,0 +1,3707 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="description" content="Portfolio d'Elya Prugnières. Experte en communication globale, stratégie digitale, graphisme et gestion de projet web. Découvrez mes réalisations.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elya Prugnieres | Portfolio Communication Digitale</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rye&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Disabled main.js to avoid ScrollTrigger conflict -->
+    <script src="performance.js" defer></script>
+
+    <style>
+        /* Slideshow Layout Locks */
+        html, body {
+            overflow: hidden !important;
+            height: 100vh !important;
+            width: 100vw !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: var(--bg-color);
+        }
+        .slides-viewport {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .slides-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            position: relative;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .slides-dots {
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .slide-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(82, 57, 40, 0.3);
+            border: 1px solid rgba(82, 57, 40, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .slide-dot.active {
+            background-color: #f2a501;
+            transform: scale(1.3);
+            border-color: #f2a501;
+        }
+
+        /* Floating main slideshow arrows */
+        .main-slides-nav {
+            position: fixed;
+            right: 18px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .main-slide-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(247, 247, 239, 0.9);
+            border: 1px solid #523928;
+            color: #523928;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(82, 57, 40, 0.15);
+            font-size: 1.1rem;
+        }
+        .main-slide-arrow:hover {
+            background-color: #523928;
+            color: #f7f7ef;
+            transform: scale(1.1);
+        }
+        .main-slide-arrow:active {
+            transform: scale(0.95);
+        }
+        
+        /* Timeline card stack layout */
+        .experience-stack-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 480px;
+            margin: 0 auto;
+        }
+        .experience-card {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) scale(0.9) translateY(40px) !important;
+            width: 100% !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+            box-sizing: border-box !important;
+            z-index: 1 !important;
+            margin: 0 !important;
+        }
+        .experience-card.visible {
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10 !important;
+        }
+        .experience-card.visible.stacked-1 {
+            transform: translate(-50%, -50%) scale(0.92) translateY(-25px) !important;
+            opacity: 0.6 !important;
+            filter: blur(2px) !important;
+            z-index: 8 !important;
+        }
+        .experience-card.visible.stacked-2 {
+            transform: translate(-50%, -50%) scale(0.88) translateY(-50px) !important;
+            opacity: 0.3 !important;
+            filter: blur(4px) !important;
+            z-index: 6 !important;
+        }
+        .experience-card.visible.active-card {
+            transform: translate(-50%, -50%) scale(1) translateY(0) !important;
+            opacity: 1 !important;
+            filter: none !important;
+            z-index: 10 !important;
+            box-shadow: 0 15px 35px rgba(82, 57, 40, 0.15) !important;
+        }
+
+        /* Overlays CSS */
+        .portfolio-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #f7f7ef;
+            z-index: 2000;
+            display: none;
+            box-sizing: border-box;
+        }
+        .overlay-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            height: 80px;
+            border-bottom: 1px solid rgba(82, 57, 40, 0.1);
+            box-sizing: border-box;
+            background: #f7f7ef;
+        }
+        .overlay-back-btn {
+            background: none;
+            border: 1px solid #523928;
+            color: #523928;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .overlay-back-btn:hover {
+            background-color: #523928;
+            color: #f7f7ef;
+        }
+        .overlay-nav-title {
+            font-family: 'Rye', serif;
+            font-size: 1.5rem;
+            color: #523928;
+            text-transform: uppercase;
+        }
+        .overlay-close-x {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #523928;
+            transition: transform 0.3s ease;
+        }
+        .overlay-close-x:hover {
+            transform: scale(1.2);
+        }
+        .overlay-slides-viewport {
+            height: calc(100vh - 160px);
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .overlay-slides-wrapper {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .overlay-slide {
+            width: 100vw;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 0 40px;
+        }
+        .overlay-slide-content {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            height: 100%;
+            align-items: center;
+            gap: 40px;
+        }
+        .overlay-slide-left, .overlay-slide-right {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        .overlay-slide-left img {
+            max-width: 100%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .overlay-slide-left::-webkit-scrollbar, .overlay-slide-right::-webkit-scrollbar {
+            width: 6px;
+        }
+        .overlay-slide-left::-webkit-scrollbar-track, .overlay-slide-right::-webkit-scrollbar-track {
+            background: rgba(82, 57, 40, 0.03);
+        }
+        .overlay-slide-left::-webkit-scrollbar-thumb, .overlay-slide-right::-webkit-scrollbar-thumb {
+            background: rgba(82, 57, 40, 0.2);
+            border-radius: 3px;
+        }
+        .overlay-slide-left::-webkit-scrollbar-thumb:hover, .overlay-slide-right::-webkit-scrollbar-thumb:hover {
+            background: rgba(82, 57, 40, 0.4);
+        }
+        .overlay-controls {
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            border-top: 1px solid rgba(82, 57, 40, 0.1);
+            box-sizing: border-box;
+            background: #f7f7ef;
+        }
+        .overlay-arrow {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #523928;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            padding: 10px;
+        }
+        .overlay-arrow:hover {
+            transform: scale(1.2);
+        }
+        .overlay-dots {
+            display: flex;
+            gap: 10px;
+        }
+        .overlay-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(82, 57, 40, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .overlay-dot.active {
+            background-color: #523928;
+            transform: scale(1.3);
+        }
+        
+        .sub-project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            padding: 10px 0;
+        }
+        .sub-project-card {
+            height: 140px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sub-project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .sub-project-card .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(82, 57, 40, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            transition: background 0.3s ease;
+        }
+        .sub-project-card:hover .card-overlay {
+            background: rgba(82, 57, 40, 0.6);
+        }
+        .sub-project-card .card-placeholder {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Projects Grid scaling to prevent scrollbars */
+        #projects .projects-grid {
+            gap: 15px !important;
+            margin-top: 15px !important;
+        }
+        #projects .project-link {
+            height: 20vh !important;
+        }
+        #projects .project-link img {
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Transparent Photo Card masonry grids styling */
+        .photo-item {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(82, 57, 40, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .photo-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(82, 57, 40, 0.25);
+        }
+        
+        /* PDF iframe sizing for desktop */
+        .pdf-iframe-container {
+            width: 100%;
+            height: 360px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            background: #fff;
+            border: 1px solid rgba(82,57,40,0.1);
+        }
+
+        /* Custom mobile responsive adaptations */
+        @media (max-width: 768px) {
+            .overlay-slide-content {
+                flex-direction: column !important;
+                overflow-y: auto !important;
+                gap: 20px !important;
+                padding-top: 20px !important;
+            }
+            .overlay-slide-left, .overlay-slide-right {
+                width: 100% !important;
+                height: auto !important;
+                overflow-y: visible !important;
+                padding-right: 0 !important;
+            }
+            .sub-project-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+            #projects .projects-grid {
+                grid-template-columns: 1fr 1fr !important;
+                height: 60vh !important;
+                overflow-y: auto !important;
+            }
+            .photos-masonry-grid {
+                grid-template-columns: 1fr 1fr !important;
+                height: 60vh !important;
+                overflow-y: auto !important;
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- Background Layers -->
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="javascript:void(0)" onclick="goToSlide(0)" class="active">Accueil</a>
+            <a href="javascript:void(0)" onclick="goToSlide(6)">Mes Photos</a>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Expériences</span>
+                <div class="nav-dropdown-menu">
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-adresse')">Groupe Adresse : Service Civique</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-charente')">Charente Libre</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-corderie')">Corderie Royale</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Projets</span>
+                <div class="nav-dropdown-menu">
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-aquarium')">Aquarium de La Rochelle - Campagne Fictive</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-antilles')">Les Antilles de Jonzac - Campagne fictive</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-antares')">Antares - Campagne fictive</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-cgr')">CGR Cinéma - Campagne fictive</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-hopital')">Hopital des 15-20 - Exercice graphique</a>
+                    <a href="javascript:void(0)" onclick="openOverlay('overlay-koel')">Centre Koel - Exercice pratique</a>
+                </div>
+            </div>
+            <a href="javascript:void(0)" onclick="goToSlide(9)">Contact</a>
+        </div>
+    </nav>
+
+
+    <!-- Scroll-Driven Rodeo Hero -->
+    <!-- Slideshow Viewport -->
+    <div class="slides-viewport">
+        <div class="slides-wrapper">
+        <section id="hero" class="hero-section slide"
+            style="position: sticky; top: 0; height: 100vh; background-color: transparent;">
+
+            <!-- Rodeo Cowboy Asset -->
+            <div class="rodeo-container">
+                <img src="assets/rodeo-cowboy.png" alt="Rodeo Cowboy" id="rodeoCowboy" class="rodeo-asset">
+            </div>
+
+            <div class="hero-content">
+                <h1 class="rye-text portfolio-title">Portfolio</h1>
+                <div class="hero-details">
+                    <span class="brittany-text name-title">Elya Prugnieres</span>
+                    <p class="subtitle">Communication Digitale | Événementiel & Culturel</p>
+                </div>
+            </div>
+        </section>
+
+    <!-- About Section -->
+    <section id="about" class="section slide" style="background-color: var(--bg-color); position: relative; z-index: 1; padding: 60px 0;">
+        <div class="container" style="display: flex; gap: 40px; align-items: center;">
+
+            <!-- Bulle Message Wrapper (Drop Shadow) -->
+            <div id="about-bubble-wrapper" class="about-bubble-wrapper">
+
+                <!-- Bubble Ellipse -->
+                <div class="about-bubble">
+                    <div class="bubble-reflection"></div>
+                    <h2 class="section-title"
+                        style="font-family: var(--font-heading); margin-bottom: 25px; margin-top: 0; color: var(--text-color);">
+                        About me</h2>
+
+                    <p style="margin-bottom: 15px;">Je m’appelle <span class="bold">Elya Prugnières</span>, j’ai 21 ans
+                        et je suis étudiante en <span class="bold">BTS Communication</span>, que j'ai suivi en distanciel via le <span class="bold">CNED</span>.</p>
+                    <p style="margin-bottom: 15px;">Au cours de ces deux années, j’ai développé mes compétences en
+                        communication à travers mes
+                        <span class="bold">projets personnels</span>, <span class="bold">un Service Civique en
+                            communication digitale</span> chez A.D.R.E.S.S.E. à Cognac,
+                        <span class="bold">un stage en Communication Événementielle chez Charente Libre</span>, et <span
+                            class="bold">un stage en communication
+                            culturelle à la Corderie Royale de Rochefort</span>.
+                    </p>
+                    <p style="margin-bottom: 15px;">Créative et passionnée, je m’intéresse particulièrement aux animaux
+                        et à l’équitation, ce
+                        qui nourrit <span class="bold">mon sens de l’observation et de l’organisation</span>.</p>
+                    <p style="margin-top: 25px; font-weight: 700;">Pour l'année 2026-2027, je vais intégrer le <span class="bold">Bachelor Communication de l'ISCOM Bordeaux</span>, que je réaliserai en alternance au sein de l'entreprise <span class="bold">Africa Power Services</span>.</p>
+                    <a href="assets/cv.pdf" class="btn-primary" id="cv-button" download
+                        style="margin-top: 30px; display: inline-block;">
+                        <span class="wave-text">T</span><span class="wave-text">é</span><span class="wave-text">l</span><span class="wave-text">é</span><span class="wave-text">c</span><span class="wave-text">h</span><span class="wave-text">a</span><span class="wave-text">r</span><span class="wave-text">g</span><span class="wave-text">e</span><span class="wave-text">r</span> <span class="wave-text">m</span><span class="wave-text">o</span><span class="wave-text">n</span> <span class="wave-text">C</span><span class="wave-text">V</span>
+                    </a>
+                </div>
+
+                <!-- Queue de la bulle (ronde et en bas à gauche) -->
+                <svg style="position: absolute; bottom: -15px; left: 15%; width: 70px; height: 70px; z-index: 1;"
+                    viewBox="0 0 50 50">
+                    <path d="M 0 0 L 50 0 Q 50 50 0 50 Q 20 20 0 0 Z" fill="#ffffff" />
+                </svg>
+
+            </div>
+
+            <!-- Profile Photo -->
+            <div style="flex-shrink: 0; width: 400px; padding-left: 20px;">
+                <div class="photo-frame">
+                    <img src="assets/profile.jpg" alt="Elya Prugnieres" class="profile-photo">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CNED Section -->
+    <section id="cned" class="section slide" style="background-color: var(--bg-color); padding: 40px 0; display: flex; align-items: center; justify-content: center; height: 100vh; width: 100vw;"
+        <div class="container">
+            <div class="cned-container">
+                <div class="cned-text-block">
+                    <p>
+                        Ma formation en BTS Communication est suivie à distance via le <strong>CNED (Centre National d'Enseignement à Distance)</strong>. 
+                        Ce format d'apprentissage exigeant requiert une grande autonomie, une organisation rigoureuse et une forte autodiscipline.
+                    </p>
+                </div>
+                <div class="cned-logo-block">
+                    <img src="assets/logos/cned_logo_169_2.png" alt="CNED Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parcours Section -->
+    <section id="parcours" class="section slide" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading); margin-bottom: 2rem;">Mon Parcours</h2>
+            
+            <div class="experience-stack-container">
+                <!-- Card 1: 2022 -->
+                <div class="experience-card" id="card-1">
+                    <div class="card-year">2022</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Baccalauréat Général</h3>
+                            <div class="company">Lycée</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Obtention du diplôme avec mention Très Bien.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: 2024 -->
+                <div class="experience-card" id="card-2">
+                    <div class="card-year">2024</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>BTS Communication</h3>
+                            <div class="company">CNED (Centre National d'Enseignement à Distance)</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Formation théorique et pratique suivie à distance, validant mes compétences opérationnelles en communication média et hors-média.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: 2024 -->
+                <div class="experience-card" id="card-3">
+                    <div class="card-year">2024</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Service Civique</h3>
+                            <div class="company">A.D.R.E.S.S.E. (Cognac)</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Mission de communication digitale (Facebook et Instagram) et valorisation de l'accompagnement à la réinsertion socioprofessionnelle.</p>
+                        </div>
+                        <div class="experience-footer">
+                            <img src="assets/Service Civique/logo adresse.png" alt="Logo Adresse" class="experience-logo">
+                            <a href="javascript:void(0)" onclick="openOverlay('overlay-adresse')" class="experience-btn">En savoir +</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: 2025 -->
+                <div class="experience-card" id="card-4">
+                    <div class="card-year">2025</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Stage Communication Événementielle</h3>
+                            <div class="company">Charente Libre</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Collaboration active à la planification, la logistique et la communication réseaux sociaux pour le Salon des Séniors et la remise des prix Charentais.</p>
+                        </div>
+                        <div class="experience-footer">
+                            <img src="assets/logo charente libre.png" alt="Logo Charente Libre" class="experience-logo">
+                            <a href="javascript:void(0)" onclick="openOverlay('overlay-charente')" class="experience-btn">En savoir +</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: 2026 -->
+                <div class="experience-card" id="card-5">
+                    <div class="card-year">2026</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Stage Communication Culturelle</h3>
+                            <div class="company">La Corderie Royale de Rochefort</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Création graphique de supports PAO, montage vidéo et gestion des réseaux sociaux (Instagram et Facebook) pour l'exposition temporaire TOTEMS.</p>
+                        </div>
+                        <div class="experience-footer">
+                            <img src="assets/logo corderie.svg" alt="Logo Corderie Royale" class="experience-logo">
+                            <a href="javascript:void(0)" onclick="openOverlay('overlay-corderie')" class="experience-btn">En savoir +</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Skills & Marquee -->
+        <div class="slide" id="slide-4" style="background-color: #fcfcf9; width: 100vw; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box;">
+            <section id="skills" class="section alternate-bg" style="padding: 10px 0; background: transparent; width: 100%; box-shadow: none;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Mes Compétences</h2>
+            
+            <div class="skills-grid" style="margin-top: 3rem;">
+                <!-- Card 1: Création de contenu -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-mobile-screen-button"></i>
+                    <h3>Création de contenu</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Création de visuels pour les réseaux sociaux</li>
+                        <li>Production de contenus photo et vidéo</li>
+                        <li>Rédaction de contenus digitaux (posts, newsletters)</li>
+                        <li>Conception de supports de communication</li>
+                        <li>Adaptation des contenus selon la cible et le format</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Community Management -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-camera"></i>
+                    <h3>Community Management</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Gestion et animation de réseaux sociaux</li>
+                        <li>Planification et programmation des publications</li>
+                        <li>Mise en place de stratégies de contenu</li>
+                        <li>Interaction et engagement avec la communauté</li>
+                        <li>Veille des tendances social media</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Stratégie digitale -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Stratégie digitale</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Analyse des performances des publications</li>
+                        <li>Suivi des indicateurs clés (KPI)</li>
+                        <li>Identification des cibles et des objectifs</li>
+                        <li>Optimisation des actions de communication</li>
+                        <li>Référencement et visibilité des contenus</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Gestion de projet -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-tasks"></i>
+                    <h3>Gestion de projet</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Organisation d'événements</li>
+                        <li>Coordination avec partenaires et intervenants</li>
+                        <li>Gestion logistique de projets</li>
+                        <li>Planification des actions de communication</li>
+                        <li>Création de calendriers éditoriaux</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Communication visuelle -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-palette"></i>
+                    <h3>Communication visuelle</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Conception d’identités visuelles simples</li>
+                        <li>Création de supports print et digitaux</li>
+                        <li>Mise en page de documents</li>
+                        <li>Respect d’une charte graphique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Marquee Section -->
+            <section class="marquee-container" style="margin: 20px 0; width: 100%;">
+        <div class="marquee-track">
+            <!-- First Set -->
+            <img src="assets/logos/Adobe_InDesign_CC_icon.svg.png" alt="InDesign">
+            <img src="assets/logos/Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop">
+            <img src="assets/logos/Adobe_Photoshop_Lightroom_CC_logo.svg.png" alt="Lightroom">
+            <img src="assets/logos/adobe-illustrator-logo-png_seeklogo-380559.png" alt="Illustrator">
+            <img src="assets/logos/WordPress.com-Logo.wine.png" alt="WordPress">
+            <img src="assets/logos/Facebook-logo.png" alt="Facebook">
+            <img src="assets/logos/logo-linkedin-rond.webp" alt="LinkedIn">
+            <img src="assets/logos/logo-tiktok-cercle-noir-emblematique-notes-blanches-turquoise-roses_1131634-485.jpg.avif" alt="TikTok">
+            <img src="assets/logos/images.png" alt="Logo">
+            <img src="assets/logos/images-2.png" alt="Logo">
+            <img src="assets/logos/illustration-artistique_929495-37.jpg.avif" alt="Logo">
+            <img src="assets/logos/303e9a311345513d81eece6c37a3a1b1-2.png" alt="Pinterest Logo">
+            <img src="assets/logos/Canva-Embleme.png" alt="Canva Transparent">
+            <!-- Duplicate for seamless scrolling -->
+            <img src="assets/logos/Adobe_InDesign_CC_icon.svg.png" alt="InDesign">
+            <img src="assets/logos/Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop">
+            <img src="assets/logos/Adobe_Photoshop_Lightroom_CC_logo.svg.png" alt="Lightroom">
+            <img src="assets/logos/adobe-illustrator-logo-png_seeklogo-380559.png" alt="Illustrator">
+            <img src="assets/logos/WordPress.com-Logo.wine.png" alt="WordPress">
+            <img src="assets/logos/Facebook-logo.png" alt="Facebook">
+            <img src="assets/logos/logo-linkedin-rond.webp" alt="LinkedIn">
+            <img src="assets/logos/logo-tiktok-cercle-noir-emblematique-notes-blanches-turquoise-roses_1131634-485.jpg.avif" alt="TikTok">
+            <img src="assets/logos/images.png" alt="Logo">
+            <img src="assets/logos/images-2.png" alt="Logo">
+            <img src="assets/logos/illustration-artistique_929495-37.jpg.avif" alt="Logo">
+            <img src="assets/logos/303e9a311345513d81eece6c37a3a1b1-2.png" alt="Pinterest Logo">
+            <img src="assets/logos/Canva-Embleme.png" alt="Canva Transparent">
+        </div>
+    </section>
+        </div> <!-- End Slide 4 -->
+
+    <!-- Projects Section -->
+    <section id="projects" class="section slide" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading); margin-bottom: 3rem;">Mes Projets</h2>
+            
+            <div class="projects-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto;">
+                <!-- Block 1: Service Civique (Adresse) -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-adresse')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Brochure_Mockup_3.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Groupe Adresse</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Service Civique</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 2: Aquarium de La Rochelle -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-aquarium')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Citylight_Mockup_3.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Aquarium de La Rochelle</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 3: Les Antilles de Jonzac -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-antilles')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Bus_Stop_Citylight_Mockup.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Les Antilles de Jonzac</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 4: Antares -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-antares')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Citylight_Mockup_1.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Antares</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 5: CGR Cinéma -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-cgr')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/A4_Brochure_Mockup_3.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">CGR Cinéma</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 6: Charente Libre -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-charente')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Charente libre/mockup charente libre1.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Charente Libre</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Stage Événementiel</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 7: Corderie Royale -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-corderie')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Corderie Royale/atelier poisson.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Corderie Royale</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Stage Culturel</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 8: Hopital des 15-20 -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-hopital')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Projet Hopital des 15-20/mockup hopital.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Hôpital des 15-20</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Exercice Graphique</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 9: Centre Koel -->
+                <a href="javascript:void(0)" onclick="openOverlay('overlay-koel')" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Projet Centre Koel/Instagram Post Story Mockup.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Centre Koel</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Exercice Pratique</span>
+                </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mes Photos Section -->
+    <section id="photos" class="section alternate-bg" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Mes Photos</h2>
+            
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2411 copie.JPG" alt="Elya Prugnieres - Photo 1" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-9.png" alt="Elya Prugnieres - Photo 2" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-8.png" alt="Elya Prugnieres - Photo 3" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Maneskinn & Romana-3.png" alt="Elya Prugnieres - Photo 4" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Maneskinn & Romana-2.png" alt="Elya Prugnieres - Photo 5" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Maneskinn & Romana-1.png" alt="Elya Prugnieres - Photo 6" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2432 copie.JPG" alt="Elya Prugnieres - Photo 7" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2415 copie.JPG" alt="Elya Prugnieres - Photo 8" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2443 copie.JPG" alt="Elya Prugnieres - Photo 9" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2418 copie.JPG" alt="Elya Prugnieres - Photo 10" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-3.png" alt="Elya Prugnieres - Photo 11" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-2.png" alt="Elya Prugnieres - Photo 12" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-10.png" alt="Elya Prugnieres - Photo 13" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-1.png" alt="Elya Prugnieres - Photo 14" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-5.png" alt="Elya Prugnieres - Photo 15" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-4.png" alt="Elya Prugnieres - Photo 16" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-6.png" alt="Elya Prugnieres - Photo 17" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-7.png" alt="Elya Prugnieres - Photo 18" >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    
+
+    <!-- SUBPAGES OVERLAYS SECTION -->
+
+    <!-- OVERLAY: Aquarium de La Rochelle -->
+    <div class="portfolio-overlay" id="overlay-aquarium">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Aquarium de La Rochelle</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Projet Aquarium/identité visuelle.png" alt="Identité visuelle">
+            </div>
+            <div class="overlay-slide-right">
+                <h4>À propos du projet</h4><h4>À propos du projet</h4>
+                        <p>
+                            Ce projet est une <strong>campagne de communication fictive pour la Saint-Valentin</strong> réalisée pour l'<strong>Aquarium de La Rochelle</strong>, dans l'objectif d'une <strong>recherche de stage pour mon BTS de communication</strong>. L'objectif était de concevoir un concept original et engageant pour montrer mon dynamisme et mes compétences dans un cadre de recherche de stage.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Objectifs</h5>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;"><strong>Moderniser l'image de marque</strong> de l'Aquarium auprès d'un public de <strong>jeunes adultes</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;"><strong>Créer du contenu</strong> autour de l'évènement pour <strong>inciter à la visite des couples</strong> sur le site.</li>
+                            <li style="margin-bottom: 0.6rem;">Proposer une <strong>offre ciblée</strong> avec une <strong>programmation spéciale pour le week-end de la Saint-Valentin</strong>.</li>
+                        </ul>
+
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <h5 style="font-family:'Poppins', sans-serif; font-weight:700; color:#523928; margin-bottom:15px; text-transform:uppercase;">Publications Instagram</h5>
+        <div class="b-outils-gallery">
+            <div class="b-outils-track">
+                <img src="assets/Projet Aquarium/post insta.png" alt="Post Insta 1">
+                <img src="assets/Projet Aquarium/post insta 2.png" alt="Post Insta 2">
+                <img src="assets/Projet Aquarium/post insta 3.png" alt="Post Insta 3">
+            </div>
+        </div>
+        <div class="scroll-hint"><i class="fas fa-chevron-left"></i> <span>Faites défiler</span> <i class="fas fa-chevron-right"></i></div>
+        <img src="assets/Projet Aquarium/mockup posts.png" alt="Mockup Posts" style="margin-top:10px; max-height:180px; width:auto; object-fit:contain;">
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Cible</h5>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;"><strong>Cible principale :</strong> Les <strong>couples de 20 à 35 ans</strong> de l'agglomération de <strong>La Rochelle</strong> et de la <strong>Charente-Maritime</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;"><strong>Cible secondaire :</strong> Les <strong>passionnés de nature et de biodiversité</strong> — des personnes sensibles et engagées pour le <strong>bien-être animal</strong>.</li>
+                        </ul>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Moyens</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1rem;">
+                            J'ai choisi de partir sur une <strong>campagne de communication 360°</strong> avec un mix de formats et de moyens :
+                        </p>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;"><strong>Plusieurs posts Instagram</strong> pour créer du contenu <strong>viral et interactif</strong> sur les réseaux sociaux.</li>
+                            <li style="margin-bottom: 0.6rem;">Une <strong>vidéo</strong> publiée sur les réseaux sociaux en complémentarité.</li>
+                            <li style="margin-bottom: 0.6rem;">Un <strong>planning éditorial</strong> structurant l'ensemble de la diffusion.</li>
+                            <li style="margin-bottom: 0.6rem;">Une <strong>affiche</strong> destinée à être diffusée dans <strong>La Rochelle et les villes alentours</strong>.</li>
+                        </ul>
+
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div style="width: 280px; display: flex; flex-direction: column; align-items:center;">
+            <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+                <video preload="none" id="video-aquarium-inner" data-src="assets/Projet Aquarium/Ils sont mignons video .mp4" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+                <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.8rem; color: #888; font-style: italic; text-align: center;">Vidéo promotionnelle</div>
+        </div>
+        <img src="assets/Projet Aquarium/plan de contenu.png" alt="Plan de contenu" style="margin-top:20px; max-height:160px; width:auto; object-fit:contain;">
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Choix Créatifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1rem;">
+                            La direction artistique est <strong>épurée et minimaliste</strong>, fidèle à la <strong>charte graphique de l'Aquarium de La Rochelle</strong>. La <strong>palette de couleurs</strong> s'inspire directement de <strong>l'univers aquatique</strong>, enrichie de <strong>couleurs romantiques</strong> qui rappellent subtilement la thématique de la <strong>Saint-Valentin</strong>.
+                        </p>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+                            Ce projet fictif a été pensé pour démontrer ma capacité à <strong>lier une fête populaire à un enjeu environnemental fort</strong>, en adéquation avec les missions et valeurs de sensibilisation de l'<strong>Aquarium de La Rochelle</strong>.
+                        </p>
+
+                        <!-- Évaluation -->
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #fdfaf7; border-radius: 12px; border: 1px solid rgba(82,57,40,0.1);">
+                            <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Évaluation</h5>
+                            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #4caf50; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">✓</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Point fort —</strong> La cohérence et le <strong>mix de formats complémentaires</strong> sont le principal atout de la campagne, qui démontre une <strong>vision stratégique 360°</strong> avec une <strong>identité visuelle unifiée</strong> et des messages adaptés à chaque support.
+                                    </p>
+                                </div>
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #f2a501; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">→</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Axe d'amélioration —</strong> L'ajout d'un <strong>call-to-action</strong> et d'un lien direct vers le <strong>site de réservation</strong> permettrait une <strong>conversion plus importante</strong> de la campagne, et ainsi de mieux remplir l'objectif de <strong>faire agir le public</strong>.
+                                    </p>
+                                
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/Projet Aquarium/note intention.pdf#toolbar=0&navpanes=0" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        <a href="assets/Projet Aquarium/note intention.pdf" class="experience-btn" download style="margin-top:15px; border-radius:30px;"><i class="fas fa-file-pdf"></i> Télécharger la note</a>
+        
+            </div>
+            <div class="overlay-slide-right">
+                
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-aquarium', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-aquarium', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-aquarium', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-aquarium', 2)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-aquarium', 3)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-aquarium', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Les Antilles de Jonzac -->
+    <div class="portfolio-overlay" id="overlay-antilles">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Les Antilles de Jonzac</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Projet Antilles/identite visuelle.png" alt="Identité visuelle">
+            </div>
+            <div class="overlay-slide-right">
+                <h4>À propos du projet</h4><h4>À propos du projet</h4>
+                        <p>
+                            Ce projet est une <strong>campagne de communication fictive</strong> réalisée pour le centre aquatique <strong>Les Antilles de Jonzac</strong>, situé en <strong>Charente-Maritime</strong>, dans le cadre d'une <strong>recherche de stage pour mon BTS de communication</strong>. L'objectif est de démontrer mes compétences en <strong>stratégie de communication</strong> et d'illustrer mon univers à travers un projet concret.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Objectifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            Cette campagne repose sur un concept fort : <strong>« Les Antilles sans quitter la France »</strong>, qui vise à valoriser le site unique des Antilles de Jonzac.
+                        </p>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;">Développer l'<strong>attractivité territoriale</strong> de l'établissement et en faire une <strong>destination d'évasion, de déconnexion et de ressourcement</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;">Valoriser la <strong>diversité des prestations</strong> du site pour <strong>stimuler le trafic des visiteurs</strong>.</li>
+                        </ul>
+
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <img src="assets/Projet Antilles/post instagram.png" alt="Publications Instagram" style="max-height:200px; width:auto; object-fit:contain;">
+        <div style="width: 260px; display: flex; flex-direction: column; align-items:center; margin-top:20px;">
+            <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+                <video preload="none" id="video-antilles-inner" data-src="assets/Projet Antilles/video.mp4" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+                <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+            </div>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Cibles</h5>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;"><strong>Cible principale :</strong> Les <strong>locaux et habitants de la Charente-Maritime</strong> et des départements limitrophes, à la recherche d'une <strong>parenthèse détente à proximité</strong> de chez eux.</li>
+                            <li style="margin-bottom: 0.6rem;"><strong>Cible secondaire :</strong> Les <strong>vacanciers séjournant dans la région</strong>, pour qui les Antilles de Jonzac constituent une <strong>étape de loisirs et de bien-être</strong> pendant leur séjour.</li>
+                        </ul>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Moyens</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            J'ai choisi de partir sur une <strong>stratégie 360° mix-média</strong> avec plusieurs types de formats :
+                        </p>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;">Un <strong>flyer</strong> et des <strong>affiches de campagne</strong> diffusés dans les villes alentours et les <strong>offices de tourisme</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;">Un <strong>post Instagram</strong> et une <strong>vidéo</strong> postée sur les réseaux sociaux (<strong>Facebook et Instagram</strong>) pour maximiser la <strong>visibilité digitale</strong>.</li>
+                        </ul>
+
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; width:100%;">
+            <img src="assets/Projet Antilles/flyer recto.png" alt="Flyer Recto" style="max-height:220px; object-fit:contain;">
+            <img src="assets/Projet Antilles/verso flyer.png" alt="Flyer Verso" style="max-height:220px; object-fit:contain;">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width:100%;">
+            <img src="assets/Projet Antilles/Les Antilles de Jonzac.png" alt="Affiche 1" style="max-height:180px; object-fit:contain;">
+            <img src="assets/Projet Antilles/Les Antilles de Jonzac affiche 2.png" alt="Affiche 2" style="max-height:180px; object-fit:contain;">
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Choix Créatifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            Le choix s'est porté sur une <strong>promesse forte et engageante</strong> : <em>« Vivez une expérience tropicale, sans prendre l'avion »</em>. Cet axe joue sur le <strong>contraste entre l'exotisme de l'expérience et la simplicité d'accès</strong>.
+                        </p>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+                            L'univers visuel est <strong>bicolore et chaleureux</strong> — <strong>jaune solaire</strong> et teintes <strong>aquatiques (bleu, turquoise foncé)</strong> — pour rester cohérent avec le site et susciter immédiatement le désir d'immersion.
+                        </p>
+
+                        <!-- Évaluation -->
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #fdfaf7; border-radius: 12px; border: 1px solid rgba(82,57,40,0.1);">
+                            <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Évaluation</h5>
+                            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #4caf50; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">✓</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Point fort —</strong> L'utilisation de <strong>visuels directement inspirés du site</strong> renforce la crédibilité de la campagne. Bien que j'aie utilisé des <strong>images libres de droits</strong>, l'adaptation à l'univers visuel du site optimise la <strong>cohérence et la crédibilité</strong> de la communication, et ainsi les résultats potentiels de la campagne.
+                                    </p>
+                                </div>
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #f2a501; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">→</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Axe d'amélioration —</strong> Intégrer de <strong>vraies photos et vidéos du site</strong> à la place des images libres de droits renforcerait encore davantage l'<strong>authenticité et la crédibilité</strong> de la campagne, et maximiserait son impact auprès des cibles.
+                                    </p>
+                                
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom:15px; width:100%;">
+            <img src="assets/Projet Antilles/mockup 1.png" alt="Mockup 1" style="max-height:110px; object-fit:contain;">
+            <img src="assets/Projet Antilles/mockup 2.png" alt="Mockup 2" style="max-height:110px; object-fit:contain;">
+            <img src="assets/Projet Antilles/mockup 3.png" alt="Mockup 3" style="max-height:110px; object-fit:contain;">
+        </div>
+        <div class="pdf-iframe-container" style="height:250px;">
+            <iframe src="assets/Projet Antilles/note intention.pdf#toolbar=0&navpanes=0" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-antilles', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-antilles', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-antilles', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-antilles', 2)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-antilles', 3)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-antilles', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Antares -->
+    <div class="portfolio-overlay" id="overlay-antares">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Antares</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Citylight_Mockup_1.png" alt="Mockup Antares">
+            </div>
+            <div class="overlay-slide-right">
+                <h4>À propos du projet</h4><h4>À propos du projet</h4>
+                        <p>
+                            Ce projet créatif, axé sur la <strong>conception d'affiches publicitaires et promotionnelles</strong>, a été réalisé dans un cadre fictif pour une <strong>candidature à un stage de BTS de communication</strong>. L'objectif était de démontrer mes compétences et de mettre en avant mon <strong>univers graphique</strong>.
+                        </p>
+
+                        <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Objectifs</h5>
+                        <ul style="padding-left: 1.2rem; margin: 0 0 1.2rem 0; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.6rem;">Construire un <strong>univers visuel fort et marquant</strong>, propre au projet Antarès et adapté à l'<strong>identité graphique de la marque</strong>.</li>
+                            <li style="margin-bottom: 0.6rem;"><strong>Faire connaître</strong> et <strong>faire aimer la marque</strong> — les deux objectifs principaux portés par ces deux affiches.</li>
+                        </ul>
+
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width:100%;">
+            <img src="assets/projet antares/affiche 1.png" alt="Affiche 1" style="max-height:380px; object-fit:contain;">
+            <img src="assets/projet antares/affiche 2.png" alt="Affiche 2" style="max-height:380px; object-fit:contain;">
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Cible</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 1.2rem;">
+                            Les <strong>pratiquants d'équitation</strong>, et plus particulièrement les <strong>cavaliers axés sur le bien-être et le confort de leur animal</strong>.
+                        </p>
+
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width:100%;">
+            <img src="assets/projet antares/mockup 1.png" alt="Mockup 1" style="max-height:220px; object-fit:contain;">
+            <img src="assets/projet antares/mockup 2.png" alt="Mockup 2" style="max-height:220px; object-fit:contain;">
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Choix Créatifs</h5>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0.75rem;">
+                            J'ai choisi d'intégrer une <strong>photo réalisée lors d'un shooting photo personnel</strong> pour la première affiche, accompagnée d'une accroche forte : <em>« S'il pouvait parler, il dirait Antarès »</em>. Cela renforce l'évidence de la marque, soulignée par le sous-titre : <em>« Parce que le confort se ressent, même sans les mots »</em>.
+                        </p>
+                        <p style="font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 0;">
+                            Le visuel et son accroche apportent tout le <strong>contexte au message de la marque</strong> et mettent en avant le <strong>bien-être et le confort équin</strong>.
+                        </p>
+
+                        <!-- Évaluation -->
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #fdfaf7; border-radius: 12px; border: 1px solid rgba(82,57,40,0.1);">
+                            
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/projet antares/note intention.pdf#toolbar=0&navpanes=0" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h5 style="font-family: var(--font-heading); color: #523928; font-size: 1.15rem; margin-top: 0; margin-bottom: 1rem; text-transform: uppercase;">Évaluation</h5>
+                            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #4caf50; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">✓</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Point fort —</strong> L'<strong>accroche</strong> <em>« S'il pouvait parler, il dirait Antarès »</em> est percutante et mémorable : elle crée une <strong>connexion émotionnelle immédiate</strong> avec la cible cavalière et ancre le message de la marque sans avoir besoin de développement.
+                                    </p>
+                                </div>
+                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                    <span style="color: #f2a501; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0;">→</span>
+                                    <p style="font-size: 0.92rem; line-height: 1.7; color: #555; margin: 0;">
+                                        <strong>Axe d'amélioration —</strong> La mise en avant des <strong>produits directement</strong> (en close-up, scénarisés), plutôt que des photos prises hors contexte ou libres de droits, renforcerait la <strong>cohérence visuelle</strong> et l'<strong>image haute gamme de la marque</strong>.
+                                    </p>
+                                
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-antares', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-antares', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-antares', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-antares', 2)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-antares', 3)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-antares', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: CGR Cinéma -->
+    <div class="portfolio-overlay" id="overlay-cgr">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">CGR Cinéma</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Projet CGR /A4_Brochure_Mockup_3.png" alt="Mockup Brochure CGR">
+            </div>
+            <div class="overlay-slide-right">
+                <h4>À propos du projet</h4>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin: 0;">
+            Dans le cadre d'une candidature pour un <strong>stage</strong>, j'ai réalisé une <strong>affiche publicitaire au format A3</strong> pour promouvoir une <strong>offre spéciale</strong> et inciter un <strong>large public</strong> à fréquenter les salles de cinéma <strong>CGR</strong> lors de cet événement fictif : le <strong>Printemps du Cinéma</strong>.
+        </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Projet CGR /mockup cgr.png" alt="Mockup CGR Affiche">
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.4rem; margin-bottom: 1.2rem; text-transform: uppercase;">Note d'Intention & Analyse Stratégique</h4>
+        <div style="font-size: 0.9rem; line-height: 1.6; color: #555;">
+            <p style="margin-bottom: 10px;"><strong>Cibles :</strong> Le grand public (familles, couples, amis), étudiants, et cinéphiles (réguliers ou occasionnels).</p>
+            <p style="margin-bottom: 10px;"><strong>Objectif :</strong> Attirer ces cibles, mettre en avant l'accessibilité et la diversité des films, et encourager la réservation en ligne ou sur place.</p>
+            <p style="margin-bottom: 10px;"><strong>Moyens :</strong> Affiche A3 affichée dans les cinémas CGR et les centres commerciaux. Version numérique adaptée aux réseaux sociaux et site internet CGR.</p>
+            <p style="margin: 0;"><strong>Choix Graphiques :</strong> Conservation des logos officiels, respect de la charte de la marque, contrastes vifs, tarif de 5€ au centre en gras et dates clés au premier plan.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/Projet CGR /Le Printemps du cinéma.pdf#view=FitH&toolbar=0&navpanes=0" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.4rem; margin-bottom: 1.2rem; text-transform: uppercase;">Évaluation</h4>
+        <p style="font-size: 0.9rem; line-height: 1.6; color: #555; margin-bottom: 15px;">
+            Ce projet m'a permis de démontrer ma capacité à concevoir des supports de communication attractifs et adaptés en cohérence avec mon projet professionnel.
+        </p>
+        <div style="background: #fdfaf7; border-left: 3px solid #f2a501; padding: 1.2rem; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
+            <p style="margin-bottom: 8px;"><strong>Points forts :</strong> Clarté immédiate du message commercial (tarif de 5€ très visible), respect de l'identité et de la charte de CGR.</p>
+            <p style="margin: 0;"><strong>Axe d'amélioration :</strong> Concevoir des déclinaisons animées pour les stories ou réels pour capter davantage l'attention.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-cgr', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-cgr', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-cgr', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-cgr', 2)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-cgr', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Hôpital des 15-20 -->
+    <div class="portfolio-overlay" id="overlay-hopital">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Hôpital des 15-20</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Projet Hopital des 15-20/LOGO_horizon_15-20_RVB.png" alt="Logo Hôpital 15-20" style="max-height: 180px; width:auto;">
+            </div>
+            <div class="overlay-slide-right">
+                <h4>À propos du projet</h4>
+        <p style="font-size: 1rem; line-height: 1.6; color: #444; margin: 0 0 15px 0;">
+            Ce projet a été réalisé dans le cadre d'un processus de recrutement pour une recherche d'alternance en <strong>Bachelor de communication</strong>, pour l'<strong>hôpital national de la vision des 15 20</strong> à Paris.
+        </p>
+        <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.25rem; margin-bottom: 10px; text-transform: uppercase;">Objectif</h4>
+        <p style="font-size: 1rem; line-height: 1.6; color: #444; margin: 0;">
+            L'objectif était de démontrer mes compétences stratégiques, rédactionnelles et graphiques à travers une mise en situation professionnelle réelle pour l'<strong>hôpital des 15-20</strong>.
+        </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width:100%;">
+            <div class="pdf-iframe-container" style="height:320px;">
+                <iframe src="assets/Projet Hopital des 15-20/La cataracte2.pdf#toolbar=0&navpanes=0&view=FitH" style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+            <div class="pdf-iframe-container" style="height:320px;">
+                <iframe src="assets/Projet Hopital des 15-20/La cataracte.pdf#toolbar=0&navpanes=0&view=FitH" style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.3rem; margin-bottom: 1.2rem; text-transform: uppercase;">Le Brief & Les Propositions</h4>
+        <div style="font-size: 0.85rem; line-height: 1.6; color: #555;">
+            <p style="font-style: italic; border-left: 3px solid #f2a501; padding-left: 10px; margin-bottom: 15px;">
+                L'objectif n'est pas d'obtenir un rendu "agence", mais de voir votre démarche, votre réflexion graphique et votre capacité à travailler dans un environnement institutionnel et médical.
+            </p>
+            <p style="margin-bottom: 5px;"><strong>① Carrousel – La cataracte :</strong> Instagram carrousel pédagogique pour expliquer de manière simple et accessible (symptômes, traitement, 15-20).</p>
+            <p style="margin: 0;"><strong>② Harmonisation :</strong> Proposition d'un système graphique cohérent (codes couleurs, templates) et simulation de 6 publications.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/Projet Hopital des 15-20/La cataracte3.pdf#view=Fit&toolbar=0&navpanes=0" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.3rem; margin-bottom: 1.2rem; text-transform: uppercase;">Note d'Intention & Analyse Stratégique</h4>
+        <div style="font-size: 0.85rem; line-height: 1.6; color: #555;">
+            <p style="margin-bottom: 8px;"><strong>Cible principale :</strong> Patients atteints de la cataracte et leurs proches.</p>
+            <p style="margin-bottom: 8px;"><strong>Cible secondaire :</strong> Le grand public d'Instagram (18-35 ans), novice face à cette thématique.</p>
+            <p style="margin-bottom: 8px;"><strong>Moyens :</strong> Un carrousel structuré en 4 slides distinctes : Accroche (Slide 1), Vulgarisation (Slide 2), Traitement (Slide 3), Réassurance & Légitimité (Slide 4).</p>
+            <p style="margin: 0;"><strong>Choix Graphiques :</strong> Logo officiel épuré sur fond blanc ou bleu marine, police Montserrat en différentes graisses, phrases courtes et listes à puces pour écran mobile.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/Projet Hopital des 15-20/Note d'intension pour le Carrousel - La cataracte.pdf#toolbar=0&navpanes=0&view=FitH" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.3rem; margin-bottom: 1.2rem; text-transform: uppercase;">Pistes d'Amélioration</h4>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #555; margin-bottom: 15px;">
+            La réflexion stratégique a été particulièrement saluée. Pour s'affranchir d'un rendu trop scolaire, les optimisations suivantes ont été identifiées :
+        </p>
+        <div style="background: #fdfaf7; border-left: 3px solid #f2a501; padding: 1rem; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #555;">
+            <ul style="padding-left: 1.2rem; margin: 0; list-style-type: disc; line-height: 1.6;">
+                <li style="margin-bottom: 8px;">Intégrer des formats plus immersifs (transitions animées ou animations de mots-clés).</li>
+                <li>Varier les visuels en utilisant des illustrations vectorielles ou photos thématiques pour habiller les slides de contenu.</li>
+            </ul>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-hopital', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-hopital', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-hopital', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-hopital', 2)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-hopital', 3)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-hopital', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Centre Koel -->
+    <div class="portfolio-overlay" id="overlay-koel">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Centre Koel</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Projet Centre Koel/Instagram Post Story Mockup.png" alt="Mockup Centre Koel">
+            </div>
+            <div class="overlay-slide-right">
+                <h4>À propos du projet</h4>
+        <p style="font-size: 1rem; line-height: 1.6; color: #444; margin: 0 0 15px 0;">
+            Ce projet a été réalisé sous forme d'exercice pratique lors d'un processus de recherche pour un contrat d'alternance en <strong>Bachelor de communication</strong> pour l'entreprise <strong>Centre Koel</strong>.
+        </p>
+        <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.25rem; margin-bottom: 10px; text-transform: uppercase;">Le Brief</h4>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: #555; margin: 0; font-style: italic; border-left: 3px solid #f2a501; padding-left: 10px;">
+            Créer une mini-campagne de communication (un post et une story Instagram de 1 à 3 slides) autour d'une offre fictive : pour toute cure de 6 séances de détatouage achetées, 2 offertes.
+        </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/Projet Centre Koel/Exercice Pratique Elya PRUGNIERES.pdf#view=FitH&toolbar=0&navpanes=0" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.3rem; margin-bottom: 1.2rem; text-transform: uppercase;">Note d'Intention & Objectifs</h4>
+        <div style="font-size: 0.85rem; line-height: 1.6; color: #555;">
+            <p style="margin-bottom: 8px;"><strong>Cibles :</strong> 25-40 ans, principalement des femmes souhaitant effacer un tatouage (volonté de tourner la page, de soin et de sécurité).</p>
+            <p style="margin-bottom: 8px;"><strong>Objectifs :</strong> Générer des prises de rendez-vous pour des consultations et valoriser l’expertise du Centre Koel.</p>
+            <p style="margin-bottom: 8px;"><strong>Moyens :</strong> Un Post Carrousel (3 slides avec accroche, pédagogie, preuve avant/après et légende complète) et des Stories Instagram (scénarisation en 3 slides avec stickers interactifs).</p>
+            <p style="margin: 0;"><strong>Choix Créatifs :</strong> Teintes douces évoquant la peau et le soin haut de gamme. Typographie moderne sans empattement et en capitales pour un fort impact visuel.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+        <div class="pdf-iframe-container" style="height:360px;">
+            <iframe src="assets/Projet Centre Koel/Note d'intention Offre fictive.pdf#toolbar=0&navpanes=0&view=FitH" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        
+            </div>
+            <div class="overlay-slide-right">
+                <h4 style="font-family: var(--font-heading); color: #523928; font-size: 1.3rem; margin-bottom: 1.2rem; text-transform: uppercase;">Évaluation</h4>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #555; margin-bottom: 15px;">
+            Ce projet m'a permis de m'affranchir entièrement de l'effet scolaire grâce à un storytelling fort autour du concept de "nouveau départ" adapté à la cible.
+        </p>
+        <div style="background: #fdfaf7; border-left: 3px solid #f2a501; padding: 1rem; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #555;">
+            <p style="margin-bottom: 8px;"><strong>Points forts :</strong> Approche sémantique forte, intégration des codes natifs d'Instagram qui rendent la campagne réaliste.</p>
+            <p style="margin: 0;"><strong>Axe d'amélioration :</strong> Décliner le graphisme sous forme de vidéos animées ou de motion design.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-koel', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-koel', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-koel', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-koel', 2)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-koel', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Service Civique - Groupe Adresse -->
+    <div class="portfolio-overlay" id="overlay-adresse">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Service Civique - Groupe Adresse</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Photos/photo adresse.jpg" alt="Service Civique Espace Interim" style="max-height: 400px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Mon Service Civique</h4>
+<p>J’ai réalisé un <strong>Service Civique d’octobre 2024 à mai 2025</strong> au sein d’un regroupement d’associations à Cognac, dont <strong>Espace Intérim et A.D.R.E.S.S.E</strong>, spécialisées dans l’insertion professionnelle des personnes éloignées de l’emploi.</p>
+<p>J’ai contribué à leur <strong>communication digitale sur Facebook et Instagram</strong>, en créant et animant des contenus pour valoriser leurs missions et toucher un public plus large.</p>
+<p>Cette expérience m’a permis de <strong>développer mes compétences en rédaction, gestion de réseaux sociaux et stratégie de communication</strong>.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Service Civique/chrnologie.png" alt="Timeline Service Civique" style="max-height: 480px; width:auto; border:none; box-shadow:none;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Chronologie des actions</h5>
+<p>L'accompagnement et les projets de communication se sont structurés autour d'une planification rigoureuse pour Espace Intérim et le Groupe ADRESSE.</p>
+<p>Ce calendrier dynamique de publications sur les réseaux sociaux a permis d'optimiser l'engagement des usagers de la structure.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:flex; justify-content:center; gap:30px; margin-bottom:15px;">
+    <img src="assets/Service Civique/logo adresse.png" alt="Logo Adresse" style="max-height:50px; border:none; box-shadow:none;">
+    <img src="assets/Service Civique/01. Espace intérim - couleurs.png" alt="Logo Espace Interim" style="max-height:50px; border:none; box-shadow:none;">
+</div>
+<div class="b-outils-gallery" style="height: 180px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/Calendrier editorial projet 6/inspi 1.jpg" alt="Inspi 1">
+        <img src="assets/Service Civique/Calendrier editorial projet 6/inspi 2.PNG" alt="Inspi 2">
+        <img src="assets/Service Civique/Calendrier editorial projet 6/inspi 3.PNG" alt="Inspi 3">
+        <img src="assets/Service Civique/Calendrier editorial projet 6/inspi 4.PNG" alt="Inspi 4">
+        <img src="assets/Service Civique/Calendrier editorial projet 6/inspi 5.jpg" alt="Inspi 5">
+    </div>
+</div>
+<div class="scroll-hint"><i class="fas fa-chevron-left"></i> <span>Faites défiler</span> <i class="fas fa-chevron-right"></i></div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Veille Concurrentielle</h5>
+<p>J'ai mené des recherches poussées et une veille constante sur Instagram pour identifier des publications inspirantes en matière de communication pour l'emploi et de réinsertion socioprofessionnelle.</p>
+<p>Les palettes colorées de l'association (rose, violet, orange, vert) ont guidé la charte graphique de nos posts pour maintenir une harmonie visuelle.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content" style="flex-direction: column; overflow-y: auto; max-width: 1000px; height: 100%; justify-content: flex-start; padding-top: 20px;">
+            
+<h3 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase;">Mes Réalisations</h3>
+<p style="margin-bottom: 30px; font-size:0.95rem; color:#555;">Découvrez les différents projets de communication conçus lors de cette mission :</p>
+<div class="sub-project-grid">
+    <div class="sub-project-card" style="background-image: url('assets/Service Civique/portes ouvertes projet 1/Mockup affiche.png');" onclick="openOverlay('overlay-portes-ouvertes')">
+        <div class="card-overlay"><span class="card-placeholder">Portes ouvertes</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Service Civique/boite à outil projet 2/Mockup projet 2.png');" onclick="openOverlay('overlay-boite-a-outils')">
+        <div class="card-overlay"><span class="card-placeholder">Boite à outils</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Service Civique/Tout savoir sur le metier projet 3/Mockup projet 3.png');" onclick="openOverlay('overlay-projet3')">
+        <div class="card-overlay"><span class="card-placeholder">POSTS Tout savoir sur le métier</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Service Civique/Tout savoir sur le metier projet 3/mockup projet 4.png');" onclick="openOverlay('overlay-projet4')">
+        <div class="card-overlay"><span class="card-placeholder">Conseils et Infos intérim</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Service Civique/Interviews projet 5 /Mockup projet 5.png');" onclick="openOverlay('overlay-projet5')">
+        <div class="card-overlay"><span class="card-placeholder">Videos interviews</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Service Civique/Calendrier editorial projet 6/mockup projet 6.png');" onclick="openOverlay('overlay-projet6')">
+        <div class="card-overlay"><span class="card-placeholder">Calendrier éditorial</span></div>
+    </div>
+</div>
+
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-adresse', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-adresse', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-adresse', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-adresse', 2)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-adresse', 3)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-adresse', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Charente Libre - Stage Événementiel -->
+    <div class="portfolio-overlay" id="overlay-charente">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Charente Libre - Stage Événementiel</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Charente libre/salon_seniors_realisation.jpg" alt="Salon des Seniors Charente Libre" style="max-height: 400px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Stage Charente Libre</h4>
+<p>Lors de mon stage chez Charente Libre, j'ai participé à <strong>l'organisation et à la communication de deux événements majeurs : le Salon des Séniors et la remise des prix Charentais.</strong></p>
+<p>J'ai pris en charge la <strong>logistique et la coordination avec les partenaires et clients, tout en créant et diffusant des contenus sur Facebook et Instagram</strong> (posts, vidéos, visuels).</p>
+<p>J'ai veillé à la <strong>cohérence des publications avec les objectifs</strong> de chaque post, contribuant ainsi à augmenter la <strong>fréquentation des événements</strong>.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content" style="flex-direction: column; overflow-y: auto; max-width: 1000px; height: 100%; justify-content: flex-start; padding-top: 20px;">
+            
+<h3 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase;">Mes Réalisations</h3>
+<p style="margin-bottom: 30px; font-size:0.95rem; color:#555;">Découvrez les supports créés pour la promotion et le suivi du Salon des Séniors :</p>
+<div class="sub-project-grid">
+    <div class="sub-project-card" style="background-image: url('assets/Publication Facebook Salon Des Séniors - 22.png');" onclick="openOverlay('overlay-charente-seniors')">
+        <div class="card-overlay"><span class="card-placeholder">Posts réseaux</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Questionnaires Salon Des Séniors - 4.png');" onclick="openOverlay('overlay-charente-questionnaire')">
+        <div class="card-overlay"><span class="card-placeholder">Questionnaires</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Charente libre/chart-5.png?v=2');" onclick="openOverlay('overlay-charente-video')">
+        <div class="card-overlay"><span class="card-placeholder">Vidéos</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Charente libre/Mockuuups Free MacBook Pro mockup on round table.jpeg');" onclick="openOverlay('overlay-charente-tableau')">
+        <div class="card-overlay"><span class="card-placeholder">Tableau exposants & Badges</span></div>
+    </div>
+</div>
+
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-charente', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-charente', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-charente', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-charente', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Corderie Royale - Stage Culturel -->
+    <div class="portfolio-overlay" id="overlay-corderie">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Corderie Royale - Stage Culturel</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Corderie Royale/corderie neige.jpg" alt="La Corderie Royale Rochefort" style="max-height: 400px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Stage Corderie Royale</h4>
+<p>J'ai effectué mon <strong>dernier stage de BTS en communication culturelle au Centre de la Mer à Rochefort</strong>, qui gère le site de la Corderie Royale, mais également le <strong>Fort Liédot à l'île d'Aix</strong>.</p>
+<p>J'ai participé à <strong>la communication de l’exposition temporaire TOTEMS</strong> de la Corderie, ainsi qu’à la <strong>communication des projets et animations</strong> de la Corderie.</p>
+<p>J’ai contribué à la <strong>création des supports et projets de communication et à la gestion de leur communication digitale</strong>.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content" style="flex-direction: column; overflow-y: auto; max-width: 1000px; height: 100%; justify-content: flex-start; padding-top: 20px;">
+            
+<h3 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.8rem; margin-bottom: 40px; text-transform: uppercase;">Bilan Réseaux Sociaux</h3>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-bottom: 30px;">
+    <div style="text-align: center;">
+        <div class="stat-circle" style="background-color: #997c66; width:110px; height:110px; font-size:1.5rem; display:flex; align-items:center; justify-content:center; border-radius:50%; margin:0 auto 10px; color:#fff; font-family:'Poppins'; font-weight:700;">39K</div>
+        <p class="stat-desc" style="font-size: 0.85rem;">Vues (Instagram)</p>
+    </div>
+    <div style="text-align: center;">
+        <div class="stat-circle" style="background-color: #523928; width:110px; height:110px; font-size:1.5rem; display:flex; align-items:center; justify-content:center; border-radius:50%; margin:0 auto 10px; color:#fff; font-family:'Poppins'; font-weight:700;">+ 236%</div>
+        <p class="stat-desc" style="font-size: 0.85rem;">Vues en 8 sem. (Instagram)</p>
+    </div>
+    <div style="text-align: center;">
+        <div class="stat-circle" style="background-color: #997c66; width:110px; height:110px; font-size:1.5rem; display:flex; align-items:center; justify-content:center; border-radius:50%; margin:0 auto 10px; color:#fff; font-family:'Poppins'; font-weight:700;">134,5K</div>
+        <p class="stat-desc" style="font-size: 0.85rem;">Vues (Facebook)</p>
+    </div>
+</div>
+<div style="font-size: 0.95rem; font-weight: 700; color: #523928; line-height: 1.8; background: rgba(82,57,40,0.04); padding: 20px; border-radius: 12px; width:100%;">
+    <p>+ 84 FOLLOWERS SUR INSTAGRAM & + 109 FOLLOWERS SUR FACEBOOK</p>
+    <p>15% D'INSCRIPTIONS AUX ATELIERS NOEUDS GRÂCE AUX RÉSEAUX SOCIAUX</p>
+</div>
+
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content" style="flex-direction: column; overflow-y: auto; max-width: 1000px; height: 100%; justify-content: flex-start; padding-top: 20px;">
+            
+<h3 style="font-family: var(--font-heading); color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase;">Mes Réalisations</h3>
+<p style="margin-bottom: 30px; font-size:0.95rem; color:#555;">Découvrez les supports créatifs créés pour la Corderie Royale :</p>
+<div class="sub-project-grid">
+    <div class="sub-project-card" style="background-image: url('assets/Expo TOTEMS/Post TOTEMS.png');" onclick="openOverlay('overlay-corderie-totems')">
+        <div class="card-overlay"><span class="card-placeholder">Expo TOTEMS</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Corderie Royale/corderie neige.jpg');" onclick="openOverlay('overlay-corderie-creation')">
+        <div class="card-overlay"><span class="card-placeholder">Contenus réseaux Corderie</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Corderie Royale/Post reouverture.png');" onclick="openOverlay('overlay-corderie-reouverture')">
+        <div class="card-overlay"><span class="card-placeholder">POST Réouverture</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Corderie Royale/atelier libellule.png');" onclick="openOverlay('overlay-corderie-matelotage')">
+        <div class="card-overlay"><span class="card-placeholder">Ateliers matelotage</span></div>
+    </div>
+    <div class="sub-project-card" style="background-image: url('assets/Corderie Royale/Esquisse • C_Garnier (1)_page-0001.jpg');" onclick="openOverlay('overlay-corderie-graphistes')">
+        <div class="card-overlay"><span class="card-placeholder">Sélection des graphistes</span></div>
+    </div>
+</div>
+
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-corderie', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie', 2)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-corderie', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Portes Ouvertes - Service Civique -->
+    <div class="portfolio-overlay" id="overlay-portes-ouvertes">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-adresse')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Portes Ouvertes - Service Civique</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<img src="assets/Service Civique/portes ouvertes projet 1/Mockup affiche.png" alt="Mockup Portes Ouvertes" style="max-height:220px;">
+<div class="b-outils-gallery" style="margin-top:15px; height: 180px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/portes ouvertes projet 1/Post Portes ouvertes .jpg" alt="Post 1">
+        <img src="assets/Service Civique/portes ouvertes projet 1/Post Portes ouvertes 2.jpg" alt="Post 2">
+        <img src="assets/Service Civique/portes ouvertes projet 1/Post Portes ouvertes 3.jpg" alt="Post 3">
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Portes Ouvertes</h4>
+<p>Mon <strong>premier projet</strong> dans le cadre de mon Service Civique a été la promotion de l'événement des Portes Ouvertes.</p>
+<h5>Objectifs & Moyens</h5>
+<p>L'objectif était d'attirer des usagers vers l'insertion professionnelle en créant des affiches imprimées (A3, A4), bannières Facebook, et vidéos.</p>
+<p>Les retours ont été positifs, plusieurs personnes s'étant présentées directement à l'agence.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-portes-ouvertes', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-portes-ouvertes', 0)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-portes-ouvertes', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Boite à outils - Service Civique -->
+    <div class="portfolio-overlay" id="overlay-boite-a-outils">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-adresse')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Boite à outils - Service Civique</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Service Civique/boite à outil projet 2/Mockup projet 2.png" alt="Mockup Boite à outils">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Boite à outils</h4>
+<p>Série hebdomadaire de contenus digitaux destinée à partager des conseils et informations pratiques avec les usagers de l'association.</p>
+<h5>Cible & Moyens</h5>
+<p>Cible de personnes éloignées du marché du travail, de 30 ans et plus. Diffusion sous forme de carrousels épurés pour aérer la lecture.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height:150px; margin-bottom:10px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/boite à outil projet 2/B outils 1.jpg" alt="B 1">
+        <img src="assets/Service Civique/boite à outil projet 2/B outils 2.jpg" alt="B 2">
+        <img src="assets/Service Civique/boite à outil projet 2/B outils 3.jpg" alt="B 3">
+        <img src="assets/Service Civique/boite à outil projet 2/B outils 4.jpg" alt="B 4">
+    </div>
+</div>
+<div class="b-outils-gallery" style="height:150px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/boite à outil projet 2/Boite à outils POST1.jpg" alt="Post 1">
+        <img src="assets/Service Civique/boite à outil projet 2/Boite à outils POST2.jpg" alt="Post 2">
+        <img src="assets/Service Civique/boite à outil projet 2/Boite à outils POST 3.jpg" alt="Post 3">
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Choix Créatifs</h5>
+<p>Le style graphique est épuré car les publications contiennent beaucoup de textes. Les titres sont surlignés, avec des déclinaisons en <strong>bleu pour Espace Intérim</strong> et en <strong>rose pour ADRESSE</strong>.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="width: 280px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="video-boite-inner" data-src="assets/Service Civique/boite à outil projet 2/video boite à outil.mov" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+</div>
+<div class="b-outils-gallery" style="height: 120px; margin-top: 15px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/boite à outil projet 2/Les avantages 1.jpg" alt="A 1">
+        <img src="assets/Service Civique/boite à outil projet 2/Les avantages 2.jpg" alt="A 2">
+        <img src="assets/Service Civique/boite à outil projet 2/Les avantages 3.jpg" alt="A 3">
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Évaluation & Améliorations</h5>
+<p>Excellente portée avec le plus fort taux d'interaction par rapport aux autres contenus classiques.</p>
+<p>Pour encore améliorer l'impact, le format vidéo voix-off a été mis en place pour dynamiser la communication.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-boite-a-outils', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-boite-a-outils', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-boite-a-outils', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-boite-a-outils', 2)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-boite-a-outils', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Tout savoir sur le métier - Service Civique -->
+    <div class="portfolio-overlay" id="overlay-projet3">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-adresse')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Tout savoir sur le métier - Service Civique</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Mockup projet 3.png" alt="Mockup Projet 3">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Tout savoir sur le métier</h4>
+<p>Série de posts hebdomadaires présentant les métiers manuels de l'agence.</p>
+<h5>Objectifs</h5>
+<p>Aider les intérimaires à découvrir de nouvelles opportunités professionnelles et se reconvertir vers des secteurs porteurs.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height:150px; margin-bottom:15px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier monteur d'ouvrage1.jpg" alt="Monteur 1">
+        <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier monteur d'ouvrage2.jpg" alt="Monteur 2">
+        <img src="assets/Service Civique/Tout savoir sur le metier projet 3/Metier monteur d'ouvrage3.jpg" alt="Monteur 3">
+    </div>
+</div>
+<div style="width: 260px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="video-p3-inner" data-src="assets/Service Civique/Tout savoir sur le metier projet 3/Tous savoir sur le métier Cariste.mp4" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Moyens & Évaluation</h5>
+<p>Enregistrement de voix off et montage de capsules courtes pour faciliter la compréhension. Plus grande couverture enregistrée par rapport aux posts classiques.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-projet3', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-projet3', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-projet3', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-projet3', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Conseils et Infos intérim - Service Civique -->
+    <div class="portfolio-overlay" id="overlay-projet4">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-adresse')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Conseils et Infos intérim - Service Civique</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Service Civique/Tout savoir sur le metier projet 3/mockup projet 4.png" alt="Mockup Projet 4">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Conseils et Infos intérim</h4>
+<p>Outils digitaux créés pour guider pas-à-pas les candidats dans leurs démarches de recherche d'emploi et de gestion d'intérim.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height:160px; margin-bottom:15px;">
+    <div class="b-outils-track">
+        <img src="assets/Service Civique/Infos et conseils projet 4/Conseils inscription 1.jpg" alt="Conseil 1">
+        <img src="assets/Service Civique/Infos et conseils projet 4/Conseils inscription 2.jpg" alt="Conseil 2">
+        <img src="assets/Service Civique/Infos et conseils projet 4/Conseils inscription 3.jpg" alt="Conseil 3">
+        <img src="assets/Service Civique/Infos et conseils projet 4/Conseils inscription 4.jpg" alt="Conseil 4">
+    </div>
+</div>
+<div style="width: 260px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="video-p4-inner" data-src="assets/Service Civique/Infos et conseils projet 4/_Reel prêt pour l'interim BBBZ.mp4" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Réalisations</h5>
+<p>Rédaction de fiches pratiques, checklists d'inscription et conseils pour être prêt lors de sa première mission d'intérim.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-projet4', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-projet4', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-projet4', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-projet4', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Videos interviews - Service Civique -->
+    <div class="portfolio-overlay" id="overlay-projet5">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-adresse')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Videos interviews - Service Civique</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Service Civique/Interviews projet 5 /Mockup projet 5.png" alt="Mockup Videos Interviews">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Vidéos interviews</h4>
+<p>Série de témoignages vidéos d'intérimaires du Groupe Adresse partageant leur expérience d'accompagnement.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; width:100%;">
+    <div style="text-align:center;">
+        <video preload="none" id="v-lucas" data-src="assets/Service Civique/Interviews projet 5 /Lucas interview.mov" controls style="max-height: 180px; width:auto; border-radius:8px;"></video>
+        <div style="font-size:0.75rem; margin-top:5px;">Lucas</div>
+    </div>
+    <div style="text-align:center;">
+        <video preload="none" id="v-mme" data-src="assets/Service Civique/Interviews projet 5 /Interview mme.mov" controls style="max-height: 180px; width:auto; border-radius:8px;"></video>
+        <div style="font-size:0.75rem; margin-top:5px;">Accompagnatrice</div>
+    </div>
+    <div style="text-align:center;">
+        <video preload="none" id="v-jeremy" data-src="assets/Service Civique/Interviews projet 5 /Interview Jeremy.mov" controls style="max-height: 180px; width:auto; border-radius:8px;"></video>
+        <div style="font-size:0.75rem; margin-top:5px;">Jeremy</div>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Objectifs</h5>
+<p>Rendre l'insertion socioprofessionnelle concrète à travers des récits authentiques, motivant de nouveaux inscrits.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-projet5', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-projet5', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-projet5', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-projet5', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Calendrier éditorial - Service Civique -->
+    <div class="portfolio-overlay" id="overlay-projet6">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-adresse')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Calendrier éditorial - Service Civique</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="font-size:1.1rem; line-height: 1.8; color:#555; background:rgba(82,57,40,0.03); padding:30px; border-radius:12px; height:100%; overflow-y:auto; box-sizing:border-box;">
+    <h5 style="font-weight:700; margin-bottom:10px;">Piliers de contenu</h5>
+    <ul style="padding-left:15px; list-style:disc; margin-bottom:15px;">
+        <li>Conseils (CV, comportement en mission...)</li>
+        <li>Présentation des métiers</li>
+        <li>Témoignages et interviews</li>
+    </ul>
+    <h5 style="font-weight:700; margin-bottom:10px;">Formats</h5>
+    <ul style="padding-left:15px; list-style:disc;">
+        <li>Carrousels et Infographies</li>
+        <li>Stories et Reels (vidéos voix-off)</li>
+    </ul>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Calendrier éditorial</h4>
+<p>Outil de planification et de gestion de projet conçu pour structurer l'ensemble des communications de l'association.</p>
+<h5>Objectifs</h5>
+<p>Développer la visibilité, fidéliser la communauté et attirer de nouveaux candidats intérimaires.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="calendar-grid" style="font-size:0.6rem; max-height:280px; overflow-y:auto; border-radius:10px; width:100%;">
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Lundi</div>
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Mardi</div>
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Mercredi</div>
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Jeudi</div>
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Vendredi</div>
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Samedi</div>
+    <div class="calendar-cell calendar-header" style="min-height:unset; padding:6px;">Dimanche</div>
+    
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">3</span></div>
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">4</span><span style="font-size:0.5rem; color:#0056b3;">Carrousel</span></div>
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">5</span><span style="font-size:0.5rem; color:#d63384;">REEL Métiers</span></div>
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">6</span><span style="font-size:0.5rem; color:#0056b3;">Recrutement</span></div>
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">7</span><span style="font-size:0.5rem; color:#28a745;">Interview</span></div>
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">8</span></div>
+    <div class="calendar-cell" style="min-height:60px; padding:4px;"><span class="day-number">9</span></div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Régularité & Diffusion</h5>
+<p>Planification mensuelle des publications, programmées via Meta Business Suite.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-projet6', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-projet6', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-projet6', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-projet6', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Posts réseaux - Charente Libre -->
+    <div class="portfolio-overlay" id="overlay-charente-seniors">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-charente')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Posts réseaux - Charente Libre</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Charente libre/Banière facebook du 27 oct.png" alt="Baniere Facebook Charente">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Salon des Séniors - Posts</h4>
+<p>Conception et rédaction graphique de posts Facebook et Instagram pour le Salon des Séniors.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height:150px; margin-bottom:10px;">
+    <div class="b-outils-track">
+        <img src="assets/Charente libre/5 Univers.png" alt="5 Univers">
+        <img src="assets/Charente libre/Cadre de vie.png" alt="Cadre de vie">
+        <img src="assets/Charente libre/Exposants et site web.png" alt="Exposants">
+        <img src="assets/Charente libre/Hébergement.png" alt="Hebergement">
+    </div>
+</div>
+<div class="b-outils-gallery" style="height:150px;">
+    <div class="b-outils-track">
+        <img src="assets/Publication Facebook Salon Des Séniors - 22.png" alt="Post FB 1">
+        <img src="assets/Charente libre/Stands restants.png" alt="Stands restants">
+        <img src="assets/Charente libre/Inauguration.png" alt="Inauguration">
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Moyens & Charte graphique</h5>
+<p>Création des bannières officielles d'annonces de l'événement et déclinaisons de visuels thématiques (hébergement, exposants, stands...).</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-charente-seniors', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-seniors', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-seniors', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-charente-seniors', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Questionnaires - Charente Libre -->
+    <div class="portfolio-overlay" id="overlay-charente-questionnaire">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-charente')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Questionnaires - Charente Libre</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Questionnaires Salon Des Séniors - 4.png" alt="Questionnaire Mockup">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Questionnaires de satisfaction</h4>
+<p>Création et diffusion de formulaires d'enquête de satisfaction auprès des visiteurs et exposants du Salon des Séniors.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height: 180px; margin-bottom:15px;">
+    <div class="b-outils-track">
+        <img src="assets/Charente libre/1.png" alt="Stats 1">
+        <img src="assets/Charente libre/chart.png" alt="Chart 1">
+        <img src="assets/Charente libre/chart 2.png?v=2" alt="Chart 2">
+        <img src="assets/Charente libre/chart 3.png?v=2" alt="Chart 3">
+    </div>
+</div>
+<div class="scroll-hint"><i class="fas fa-chevron-left"></i> <span>Faites défiler</span> <i class="fas fa-chevron-right"></i></div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Statistiques Visiteurs</h5>
+<p>Extraction des réponses et formalisation des données sous forme d'infographies (logiciel Excel & Canva).</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height: 180px; margin-bottom:15px;">
+    <div class="b-outils-track">
+        <img src="assets/Charente libre/chart 6.png" alt="Chart 6">
+        <img src="assets/Charente libre/chart 8.png" alt="Chart 8">
+        <img src="assets/Charente libre/chart-10.png?v=2" alt="Chart 10">
+        <img src="assets/Charente libre/chart-14.png?v=2" alt="Chart 14">
+    </div>
+</div>
+<div class="scroll-hint"><i class="fas fa-chevron-left"></i> <span>Faites défiler</span> <i class="fas fa-chevron-right"></i></div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Statistiques Exposants & Recommandations</h5>
+<p>Analyse de la satisfaction des exposants pour proposer des pistes d'amélioration logistiques sur le salon de l'année suivante.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-charente-questionnaire', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-questionnaire', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-questionnaire', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-questionnaire', 2)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-charente-questionnaire', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Vidéos - Charente Libre -->
+    <div class="portfolio-overlay" id="overlay-charente-video">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-charente')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Vidéos - Charente Libre</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="width: 260px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="video-ch3-v2" data-src="assets/Venez rencontrer V2.mp4" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+    <div style="margin-top: 5px; font-size: 0.75rem; color:#888;">Version validée V2</div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Vidéo Promotionnelle - Salon des Séniors</h4>
+<p>Création d'un Reel promotionnel pour augmenter le taux de fréquentation de l'événement.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="width: 260px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="video-ch3-v1" data-src="assets/Charente libre/Venez rencontrer.mp4" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+    <div style="margin-top: 5px; font-size: 0.75rem; color:#888;">Version initiale V1</div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Axe Créatif & Évolutions</h5>
+<p>La V2 a été épurée pour améliorer l'impact visuel et enlever les surcharges de textes, d'après les demandes du tuteur.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-charente-video', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-video', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-video', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-charente-video', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Tableau exposants - Charente Libre -->
+    <div class="portfolio-overlay" id="overlay-charente-tableau">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-charente')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Tableau exposants - Charente Libre</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Charente libre/Mockuuups Free MacBook Pro mockup on round table.jpeg" alt="Macbook Table Mockup" style="max-height:350px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Tableau de présence des exposants</h4>
+<p>Outil d'organisation interne conçu pour récapituler l'ensemble des exposants présents sur le salon thématique.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Charente libre/badge_exposant.png" alt="Badge Exposant" style="max-height: 350px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Badges Exposants</h5>
+<p>Charte graphique déclinée pour concevoir les badges nominatifs d'accès au salon.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-charente-tableau', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-tableau', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-charente-tableau', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-charente-tableau', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: TOTEMS - Corderie Royale -->
+    <div class="portfolio-overlay" id="overlay-corderie-totems">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-corderie')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">TOTEMS - Corderie Royale</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="width: 250px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="co1-v-vernissage" data-src="assets/Expo TOTEMS/Visite d'expo des artistes.mov" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Campagne Exposition TOTEMS</h4>
+<p>Stratégie digitale de communication pour l'exposition temporaire de sculptures de cordages contemporains TOTEMS.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div class="b-outils-gallery" style="height: 180px; margin-bottom:15px;">
+    <div class="b-outils-track">
+        <img src="assets/Expo TOTEMS/Post TOTEMS.png" alt="Post 1">
+        <img src="assets/Expo TOTEMS/Post TOTEMS2.png" alt="Post 2">
+        <img src="assets/Expo TOTEMS/Post TOTEMS3.png" alt="Post 3">
+    </div>
+</div>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; width:100%;">
+    <video preload="none" id="co1-v-tot1" data-src="assets/Expo TOTEMS/Story Les coulisses de Totem.mov" controls style="max-height:140px; border-radius:8px;"></video>
+    <video preload="none" id="co1-v-tot2" data-src="assets/Expo TOTEMS/Dans les coulisses de Totems.mov" controls style="max-height:140px; border-radius:8px;"></video>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Campagnes Réseaux & Bilan</h5>
+<p>Création de Reels et Stories montrant les coulisses de l'installation et l'interview des artistes. +236% d'augmentation de visibilité en 8 semaines.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-corderie-totems', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-totems', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-totems', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-corderie-totems', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Création contenus - Corderie Royale -->
+    <div class="portfolio-overlay" id="overlay-corderie-creation">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-corderie')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Création contenus - Corderie Royale</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="width: 250px; display: flex; flex-direction: column; align-items:center;">
+    <div class="project-video-container" onclick="this.querySelector('video').paused ? (this.querySelector('video').play(), this.classList.add('playing')) : (this.querySelector('video').pause(), this.classList.remove('playing'))">
+        <video preload="none" id="co2-v-c1" data-src="assets/Videos Corderie/Un lieu unique chargé d'histoire sans horaires.mov" loop playsinline style="width: 100%; border-radius: 12px;"></video>
+        <div class="video-overlay"><div class="play-button"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><path d="M8 5v14l11-7z"/></svg></div></div>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Création de Contenus Réseaux Corderie Royale</h4>
+<p>Production et montage vidéo régulier pour la valorisation du patrimoine de la Corderie (374m de long).</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; width:100%;">
+    <video preload="none" id="co2-v-c2" data-src="assets/Videos Corderie/Story Corderie Soleil.mp4" controls style="max-height:150px; border-radius:6px;"></video>
+    <video preload="none" id="co2-v-c3" data-src="assets/Videos Corderie/Spots pour observer la Corderie Royale(1).mov" controls style="max-height:150px; border-radius:6px;"></video>
+    <video preload="none" id="co2-v-c4" data-src="assets/Videos Corderie/Story ateliers paillet.mov" controls style="max-height:150px; border-radius:6px;"></video>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Stories & Reels thématiques</h5>
+<p>Montage dynamique de capsules sur les horaires, les spots de promenade, la librairie, ou les ateliers créatifs pour Fort Liédot.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-corderie-creation', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-creation', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-creation', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-corderie-creation', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Réouverture - Corderie Royale -->
+    <div class="portfolio-overlay" id="overlay-corderie-reouverture">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-corderie')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Réouverture - Corderie Royale</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Corderie Royale/Post reouverture.png" alt="Post Reouverture Corderie" style="max-height:380px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>POST Réouverture de la Corderie</h4>
+<p>Conception PAO du visuel annonçant la réouverture annuelle des portes de la Corderie Royale de Rochefort.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-corderie-reouverture', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-reouverture', 0)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-corderie-reouverture', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Ateliers matelotage - Corderie Royale -->
+    <div class="portfolio-overlay" id="overlay-corderie-matelotage">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-corderie')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Ateliers matelotage - Corderie Royale</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; width:100%;">
+    <img src="assets/Corderie Royale/atelier poisson.png" alt="Poisson" style="max-height:220px; object-fit:contain;">
+    <img src="assets/Corderie Royale/atelier libellule.png" alt="Libellule" style="max-height:220px; object-fit:contain;">
+    <img src="assets/Corderie Royale/atelier paillet.png" alt="Paillet" style="max-height:220px; object-fit:contain;">
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Campagne Ateliers Matelotage</h4>
+<p>Supports de promotion créés pour les ateliers d'apprentissage des nœuds marins (atelier libellule, poisson, et paillasson).</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; width:100%;">
+    <video preload="none" id="co4-v-mat1" data-src="assets/Corderie Royale/Story ateliers paillet.mov" controls style="max-height:180px; border-radius:8px;"></video>
+    <video preload="none" id="co4-v-mat2" data-src="assets/Corderie Royale/Reel atelier matelotage.mov" controls style="max-height:180px; border-radius:8px;"></video>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Bilan des ateliers</h5>
+<p>La campagne digitale a permis d'obtenir 15% d'inscriptions aux ateliers directement grâce aux réseaux sociaux.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-corderie-matelotage', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-matelotage', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-matelotage', 1)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-corderie-matelotage', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Sélection graphistes - Corderie Royale -->
+    <div class="portfolio-overlay" id="overlay-corderie-graphistes">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="openOverlay('overlay-corderie')">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Sélection graphistes - Corderie Royale</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Corderie Royale/Esquisse • C_Garnier (1)_page-0001.jpg" alt="Selection des graphistes Mockup" style="max-height:350px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Sélection des graphistes - Rencontres du vivant</h4>
+<p>Stage Projet : Études de propositions, devis comparatifs et choix de prestataires graphiques pour l'exposition Rencontres du Vivant.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%;">
+    <div class="pdf-iframe-container" style="height:250px;">
+        <iframe src="assets/Corderie Royale/DEVIS-PRESENTATION-BEAU-VOIR-ROCHEFORT-17032026.pdf#toolbar=0&navpanes=0" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+    <div class="pdf-iframe-container" style="height:250px;">
+        <iframe src="assets/Corderie Royale/Devis JORDAN GENTES.pdf#toolbar=0&navpanes=0" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Études de devis</h5>
+<p>Analyse et comparaison de propositions de devis de différents graphistes prestataires.</p>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%;">
+    <div class="pdf-iframe-container" style="height:250px;">
+        <iframe src="assets/Corderie Royale/Esquisse • C_Garnier (1).pdf#toolbar=0&navpanes=0" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+    <div class="pdf-iframe-container" style="height:250px;">
+        <iframe src="assets/Corderie Royale/esquisse allizond.pdf#toolbar=0&navpanes=0" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+</div>
+
+            </div>
+            <div class="overlay-slide-right">
+                
+<h5>Esquisses et Intentions Graphiques</h5>
+<p>Analyse de la pertinence des esquisses reçues pour l'exposition Rencontres du vivant.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-corderie-graphistes', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-graphistes', 0)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-graphistes', 1)"></div><div class="overlay-dot" onclick="goOverlaySlide('overlay-corderie-graphistes', 2)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-corderie-graphistes', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- OVERLAY: Espace Interim - Flyers -->
+    <div class="portfolio-overlay" id="overlay-interim">
+        <div class="overlay-nav">
+            <button class="overlay-back-btn" onclick="closeCurrentOverlay()">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+            <span class="overlay-nav-title">Espace Interim - Flyers</span>
+            <span class="overlay-close-x" onclick="closeAllOverlays()">&times;</span>
+        </div>
+        
+        <div class="overlay-slides-viewport">
+            <div class="overlay-slides-wrapper">
+                
+    <div class="overlay-slide">
+        <div class="overlay-slide-content">
+            <div class="overlay-slide-left">
+                <img src="assets/Brochure_Mockup_3.png" alt="Brochure Mockup" style="max-height:400px;">
+            </div>
+            <div class="overlay-slide-right">
+                
+<h4>Espace Interim - Flyers Réseaux Sociaux</h4>
+<p>Création graphique et impression de dépliants pour la promotion d'Espace Intérim sur les réseaux sociaux.</p>
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+        
+        <div class="overlay-controls">
+            <button class="overlay-arrow overlay-arrow-left" onclick="navigateOverlaySlide('overlay-interim', -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overlay-dots">
+                <div class="overlay-dot" onclick="goOverlaySlide('overlay-interim', 0)"></div>
+            </div>
+            <button class="overlay-arrow overlay-arrow-right" onclick="navigateOverlaySlide('overlay-interim', 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    
+
+<div id="photo-lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Vue agrandie">
+    </div>
+
+    <!-- Slide 9: Contact & Footer -->
+        <div class="slide" id="slide-9" style="width: 100vw; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box;">
+            <section id="contact" class="section" style="padding: 20px 0; background: transparent; width: 100%;">
+        <div class="container text-center" style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span style="font-family: 'Rye', serif; display: block; font-size: 3rem; line-height: 1.2; color: var(--text-color);">Travaillons</span>
+                <span style="font-family: 'Brittany Signature', cursive; display: block; font-size: 4rem; color: #a68554; text-transform: capitalize; margin-top: -15px;">Ensemble</span>
+            </h2>
+            
+            
+
+            <!-- Contact Information Bubbles -->
+            <div class="contact-info-container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:elyachon@gmail.com" class="contact-card-bubble">
+                    elyachon@gmail.com
+                </a>
+                <a href="tel:0767999603" class="contact-card-bubble">
+                    07 67 99 96 03
+                </a>
+                <div class="contact-card-bubble" style="cursor: default; position: relative;">
+                    Elya Prugnières
+                    <!-- Correct Cursor Indicator from curseur.svg -->
+                    <img src="assets/curseur.svg" class="cursor-click-indicator" alt="Indicateur curseur">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center p-4">
+        <p>&copy; 2026 Elya Prugnieres. Portfolio Western Moderne.</p>
+    </footer>
+        </div> <!-- End Slide 9 -->
+        </div> <!-- End slides-wrapper -->
+        
+        <!-- Slides Navigation Dots -->
+        <div class="slides-dots">
+            <div class="slide-dot active" onclick="goToSlide(0)"></div>
+            <div class="slide-dot" onclick="goToSlide(1)"></div>
+            <div class="slide-dot" onclick="goToSlide(2)"></div>
+            <div class="slide-dot" onclick="goToSlide(3)"></div>
+            <div class="slide-dot" onclick="goToSlide(4)"></div>
+            <div class="slide-dot" onclick="goToSlide(5)"></div>
+            <div class="slide-dot" onclick="goToSlide(6)"></div>
+            <div class="slide-dot" onclick="goToSlide(7)"></div>
+            <div class="slide-dot" onclick="goToSlide(8)"></div>
+            <div class="slide-dot" onclick="goToSlide(9)"></div>
+        </div>
+        
+        <!-- Slides Navigation Arrows -->
+        <div class="main-slides-nav">
+            <button class="main-slide-arrow main-slide-arrow-up" onclick="navigateMainSlide(-1)" style="visibility: hidden;"><i class="fas fa-chevron-up"></i></button>
+            <button class="main-slide-arrow main-slide-arrow-down" onclick="navigateMainSlide(1)"><i class="fas fa-chevron-down"></i></button>
+        </div>
+    </div> <!-- End slides-viewport -->
+
+
+<script src="js/preload.js" defer></script>
+
+    <script>
+        // ==========================================================================
+        // Slide-based Portfolio Navigation Logic
+        // ==========================================================================
+        let currentSlide = 0;
+        const totalSlides = 10;
+        let isTransitioning = false;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let parcoursIndex = 0; // index of currently active timeline card
+
+        // Custom Cursor movement
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cursor, {
+                    x: e.clientX,
+                    y: e.clientY,
+                    duration: 0.1
+                });
+            });
+        }
+
+        // Global Video Toggle Mute
+        window.toggleMute = function(videoId, iconId) {
+            const video = document.getElementById(videoId);
+            const icon = document.getElementById(iconId);
+            if (video) {
+                if (video.muted) {
+                    video.muted = false;
+                    icon.className = "fas fa-volume-up";
+                    video.play().catch(e => console.log("Autoplay unmuted prevented:", e));
+                } else {
+                    video.muted = true;
+                    icon.className = "fas fa-volume-mute";
+                }
+            }
+        };
+
+        // Cowboy Bucking Animation Trigger
+        function buckCowboy() {
+            const rodeoCowboy = document.getElementById('rodeoCowboy');
+            if (!rodeoCowboy) return;
+            const intensity = 90;
+            const buckY = (Math.random() - 0.75) * intensity * 1.3;
+            const buckX = (Math.random() - 0.5) * intensity * 1.1;
+            const buckRotation = (Math.random() - 0.5) * (intensity / 1.1);
+            const buckScale = 1 + (Math.random() - 0.5) * 0.18;
+            
+            gsap.to(rodeoCowboy, {
+                y: buckY,
+                x: buckX,
+                rotation: buckRotation,
+                scale: buckScale,
+                duration: 0.15,
+                ease: "power1.inOut",
+                overwrite: true
+            });
+            
+            clearTimeout(rodeoCowboy.settleTimer);
+            rodeoCowboy.settleTimer = setTimeout(() => {
+                gsap.to(rodeoCowboy, {
+                    y: 0,
+                    x: 0,
+                    rotation: 0,
+                    scale: 1,
+                    duration: 0.7,
+                    ease: "elastic.out(1, 0.4)",
+                    overwrite: "auto"
+                });
+            }, 100);
+        }
+
+        // Photo Grid Lightbox logic
+        const photoItems = document.querySelectorAll('.photo-item img');
+        const lightbox = document.getElementById('photo-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        
+        if (photoItems.length > 0 && lightbox) {
+            photoItems.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightbox.style.display = "flex";
+                    if (lightboxImg) lightboxImg.src = img.src;
+                });
+            });
+            const closeLightbox = () => {
+                lightbox.style.display = "none";
+            };
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', closeLightbox);
+            }
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    closeLightbox();
+                }
+            });
+        }
+
+        window.navigateMainSlide = function(direction) {
+            if (overlayStack.length > 0) return;
+            if (isTransitioning) return;
+            
+            if (currentSlide === 3) {
+                if (direction > 0) {
+                    if (parcoursIndex < 4) {
+                        parcoursIndex++;
+                        updateParcoursCards();
+                        isTransitioning = true;
+                        setTimeout(() => { isTransitioning = false; }, 500);
+                    } else {
+                        goToSlide(4);
+                    }
+                } else {
+                    if (parcoursIndex > 0) {
+                        parcoursIndex--;
+                        updateParcoursCards();
+                        isTransitioning = true;
+                        setTimeout(() => { isTransitioning = false; }, 500);
+                    } else {
+                        goToSlide(2);
+                    }
+                }
+            } else {
+                if (direction > 0) {
+                    if (currentSlide === 0) {
+                        buckCowboy();
+                    }
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        };
+
+        window.goToSlide = function(idx) {
+            if (idx < 0 || idx >= totalSlides || isTransitioning) return;
+            
+            // Re-stack timeline cards appropriately based on transition direction
+            if (idx === 3) {
+                if (currentSlide < 3) parcoursIndex = 0; // scrolling down
+                else parcoursIndex = 4; // scrolling up
+                updateParcoursCards();
+            }
+            
+            currentSlide = idx;
+            const wrapper = document.querySelector('.slides-wrapper');
+            if (wrapper) {
+                wrapper.style.transform = `translateY(-${currentSlide * 100}vh)`;
+            }
+            
+            // Update dots active class
+            const dots = document.querySelectorAll('.slide-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+            
+            // Manage main arrows visibility
+            const mainUpArrow = document.querySelector('.main-slide-arrow-up');
+            const mainDownArrow = document.querySelector('.main-slide-arrow-down');
+            if (mainUpArrow) mainUpArrow.style.visibility = (currentSlide === 0) ? 'hidden' : 'visible';
+            if (mainDownArrow) mainDownArrow.style.visibility = (currentSlide === totalSlides - 1) ? 'hidden' : 'visible';
+            
+            // Update nav active link
+            const navLinks = document.querySelectorAll('.nav-links > a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (currentSlide === 0 && navLinks[0]) navLinks[0].classList.add('active');
+            if ((currentSlide >= 6 && currentSlide <= 8) && navLinks[1]) navLinks[1].classList.add('active');
+            if (currentSlide === 9 && navLinks[2]) navLinks[2].classList.add('active');
+            
+            isTransitioning = true;
+            setTimeout(() => { isTransitioning = false; }, 800);
+        };
+
+        // Main Wheel Listener
+        window.addEventListener('wheel', (e) => {
+            // Lock slides if overlays are open
+            if (overlayStack.length > 0) return;
+            if (isTransitioning) return;
+            
+            const delta = e.deltaY;
+            if (Math.abs(delta) < 30) return;
+            
+            if (currentSlide === 0 && delta > 0) {
+                buckCowboy();
+            }
+            
+            if (currentSlide === 3) {
+                if (delta > 0) {
+                    if (parcoursIndex < 4) {
+                        parcoursIndex++;
+                        updateParcoursCards();
+                        isTransitioning = true;
+                        setTimeout(() => { isTransitioning = false; }, 500);
+                    } else {
+                        goToSlide(4);
+                    }
+                } else {
+                    if (parcoursIndex > 0) {
+                        parcoursIndex--;
+                        updateParcoursCards();
+                        isTransitioning = true;
+                        setTimeout(() => { isTransitioning = false; }, 500);
+                    } else {
+                        goToSlide(2);
+                    }
+                }
+            } else {
+                if (delta > 0) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        });
+
+        // Main Keyboard Listener (arrow keys, space, page up/down)
+        window.addEventListener('keydown', (e) => {
+            if (overlayStack.length > 0) return;
+            if (isTransitioning) return;
+            
+            if (e.key === "ArrowDown" || e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
+                e.preventDefault();
+                navigateMainSlide(1);
+            } else if (e.key === "ArrowUp" || e.key === "ArrowLeft" || e.key === "PageUp") {
+                e.preventDefault();
+                navigateMainSlide(-1);
+            }
+        });
+
+        // Always track touchstart coordinate for main deck and overlays
+        window.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+
+        window.addEventListener('touchend', (e) => {
+            if (overlayStack.length > 0) return;
+            if (isTransitioning) return;
+            
+            const touchEndY = e.changedTouches[0].clientY;
+            const diff = touchStartY - touchEndY;
+            if (Math.abs(diff) < 50) return;
+            
+            if (currentSlide === 0 && diff > 0) {
+                buckCowboy();
+            }
+            
+            if (currentSlide === 3) {
+                if (diff > 0) { // swipe up (scroll down)
+                    if (parcoursIndex < 4) {
+                        parcoursIndex++;
+                        updateParcoursCards();
+                    } else {
+                        goToSlide(4);
+                    }
+                } else { // swipe down (scroll up)
+                    if (parcoursIndex > 0) {
+                        parcoursIndex--;
+                        updateParcoursCards();
+                    } else {
+                        goToSlide(2);
+                    }
+                }
+            } else {
+                if (diff > 0) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        });
+
+        function updateParcoursCards() {
+            const cards = document.querySelectorAll('.experience-card');
+            cards.forEach((card, idx) => {
+                card.classList.remove('visible', 'active-card', 'stacked-1', 'stacked-2');
+                if (idx === parcoursIndex) {
+                    card.classList.add('visible', 'active-card');
+                } else if (idx < parcoursIndex) {
+                    card.classList.add('visible');
+                    const depth = parcoursIndex - idx;
+                    if (depth === 1) {
+                        card.classList.add('stacked-1');
+                    } else {
+                        card.classList.add('stacked-2');
+                    }
+                }
+            });
+        }
+        
+        // Initial setup for parcours cards
+        updateParcoursCards();
+
+        // ==========================================================================
+        // Slide-based Subpages Overlay System Javascript Logic
+        // ==========================================================================
+        let overlayStack = [];
+        window.overlaySlides = {};
+
+        window.openOverlay = function(id) {
+            // Hide previous active overlay if any, but keep it in stack
+            if (overlayStack.length > 0) {
+                const prevId = overlayStack[overlayStack.length - 1];
+                const prevEl = document.getElementById(prevId);
+                if (prevEl) prevEl.style.display = 'none';
+            }
+            
+            overlayStack.push(id);
+            
+            const overlay = document.getElementById(id);
+            if (overlay) {
+                overlay.style.display = 'block';
+                
+                // Initialize slides if not already done
+                if (!window.overlaySlides[id]) {
+                    const slides = overlay.querySelectorAll('.overlay-slide');
+                    window.overlaySlides[id] = {
+                        current: 0,
+                        total: slides.length
+                    };
+                } else {
+                    window.overlaySlides[id].current = 0; // reset to first slide on open
+                }
+                
+                updateOverlaySlides(id);
+                document.body.classList.add('overlay-open');
+                
+                isTransitioning = true;
+                setTimeout(() => { isTransitioning = false; }, 300);
+            }
+        };
+
+        window.closeCurrentOverlay = function() {
+            if (overlayStack.length === 0) return;
+            
+            const currentId = overlayStack.pop();
+            const currentEl = document.getElementById(currentId);
+            if (currentEl) {
+                currentEl.style.display = 'none';
+                
+                // Pause any videos inside the closed overlay
+                const videos = currentEl.querySelectorAll('video');
+                videos.forEach(v => v.pause());
+            }
+            
+            // Restore previous overlay in stack if any
+            if (overlayStack.length > 0) {
+                const prevId = overlayStack[overlayStack.length - 1];
+                const prevEl = document.getElementById(prevId);
+                if (prevEl) {
+                    prevEl.style.display = 'block';
+                    updateOverlaySlides(prevId);
+                }
+            } else {
+                // Stack is completely empty, unlock body scroll
+                document.body.classList.remove('overlay-open');
+            }
+            
+            isTransitioning = true;
+            setTimeout(() => { isTransitioning = false; }, 300);
+        };
+
+        window.closeAllOverlays = function() {
+            while (overlayStack.length > 0) {
+                closeCurrentOverlay();
+            }
+        };
+
+        window.navigateOverlaySlide = function(id, direction) {
+            const state = window.overlaySlides[id];
+            if (!state) return;
+            
+            let newIdx = state.current + direction;
+            if (newIdx < 0 || newIdx >= state.total) return;
+            
+            state.current = newIdx;
+            updateOverlaySlides(id);
+        };
+
+        window.goOverlaySlide = function(id, index) {
+            const state = window.overlaySlides[id];
+            if (!state) return;
+            
+            state.current = index;
+            updateOverlaySlides(id);
+        };
+
+        function updateOverlaySlides(id) {
+            const overlay = document.getElementById(id);
+            if (!overlay) return;
+            
+            const state = window.overlaySlides[id];
+            const wrapper = overlay.querySelector('.overlay-slides-wrapper');
+            if (wrapper) {
+                wrapper.style.transform = `translateX(-${state.current * 100}%)`;
+            }
+            
+            // Update dots active class
+            const dots = overlay.querySelectorAll('.overlay-dot');
+            dots.forEach((dot, idx) => {
+                if (idx === state.current) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+            
+            // Manage chevrons visibility
+            const leftArrow = overlay.querySelector('.overlay-arrow-left');
+            const rightArrow = overlay.querySelector('.overlay-arrow-right');
+            if (leftArrow) leftArrow.style.visibility = (state.current === 0) ? 'hidden' : 'visible';
+            if (rightArrow) rightArrow.style.visibility = (state.current === state.total - 1) ? 'hidden' : 'visible';
+            
+            // Autoplay videos in active slide, pause others
+            const slides = overlay.querySelectorAll('.overlay-slide');
+            slides.forEach((slide, idx) => {
+                const videos = slide.querySelectorAll('video');
+                if (idx === state.current) {
+                    videos.forEach(v => {
+                        // lazy load if data-src
+                        if (v.dataset.src && !v.src) {
+                            v.src = v.dataset.src;
+                            v.removeAttribute('data-src');
+                            v.load();
+                        }
+                        v.play().catch(() => {});
+                    });
+                } else {
+                    videos.forEach(v => v.pause());
+                }
+            });
+        }
+
+        // Overlay keyboard controls
+        window.addEventListener('keydown', (e) => {
+            if (overlayStack.length > 0) {
+                const activeOverlayId = overlayStack[overlayStack.length - 1];
+                if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    navigateOverlaySlide(activeOverlayId, 1);
+                } else if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    navigateOverlaySlide(activeOverlayId, -1);
+                } else if (e.key === "Escape") {
+                    e.preventDefault();
+                    closeCurrentOverlay();
+                }
+            }
+        });
+
+        // Overlay scroll wheel controls
+        window.addEventListener('wheel', (e) => {
+            if (overlayStack.length > 0) {
+                const activeOverlayId = overlayStack[overlayStack.length - 1];
+                if (isTransitioning) return;
+                
+                // Helper to check if event target is inside a vertically scrollable container
+                function isInsideScrollable(el) {
+                    if (!el || el === document.body || el === document.documentElement) return false;
+                    const style = window.getComputedStyle(el);
+                    const overflowY = style.overflowY;
+                    if ((overflowY === 'auto' || overflowY === 'scroll') && el.scrollHeight > el.clientHeight) {
+                        const scrollTop = el.scrollTop;
+                        const maxScroll = el.scrollHeight - el.clientHeight;
+                        const delta = e.deltaY;
+                        
+                        // If scrolling down and not at bottom, or scrolling up and not at top, let it scroll naturally
+                        if (delta > 0 && scrollTop < maxScroll - 1) return true;
+                        if (delta < 0 && scrollTop > 1) return true;
+                    }
+                    return isInsideScrollable(el.parentElement);
+                }
+                
+                if (isInsideScrollable(e.target)) {
+                    return; // Allow natural text scrolling
+                }
+                
+                const delta = e.deltaY;
+                if (Math.abs(delta) < 15) return;
+                
+                if (delta > 0) {
+                    navigateOverlaySlide(activeOverlayId, 1);
+                } else {
+                    navigateOverlaySlide(activeOverlayId, -1);
+                }
+                
+                isTransitioning = true;
+                setTimeout(() => { isTransitioning = false; }, 600);
+            }
+        });
+
+        // Overlay horizontal touch swipe controls
+        window.addEventListener('touchend', (e) => {
+            if (overlayStack.length > 0) {
+                const activeOverlayId = overlayStack[overlayStack.length - 1];
+                if (isTransitioning) return;
+                
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                const diffX = touchStartX - touchEndX;
+                const diffY = touchStartY - touchEndY;
+                
+                // Only swipe horizontally if horizontal gesture is predominant
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+                    if (diffX > 0) {
+                        navigateOverlaySlide(activeOverlayId, 1);
+                    } else {
+                        navigateOverlaySlide(activeOverlayId, -1);
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
