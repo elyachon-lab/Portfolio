@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="description" content="Portfolio d'Elya Prugnières. Experte en communication globale, stratégie digitale, graphisme et gestion de projet web. Découvrez mes réalisations.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elya Prugnieres | Portfolio Communication Digitale</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rye&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Scripts -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="js/main.js"></script>
+    <script src="performance.js" defer></script>
+</head>
+
+<body>
+    <!-- Background Layers -->
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#hero-scroll-trigger" class="active">Accueil</a>
+            <a href="#photos">Mes Photos</a>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Expériences</span>
+                <div class="nav-dropdown-menu">
+                    <a href="adresse.html">Groupe Adresse : Service Civique</a>
+                    <a href="charente.html">Charente Libre</a>
+                    <a href="corderie.html">Corderie Royale</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Projets</span>
+                <div class="nav-dropdown-menu">
+                    <a href="aquarium.html">Aquarium de La Rochelle - Campagne Fictive</a>
+                    <a href="antilles.html">Les Antilles de Jonzac - Campagne fictive</a>
+                    <a href="antares.html">Antares - Campagne fictive</a>
+                    <a href="cgr.html">CGR Cinéma - Campagne fictive</a>
+                    <a href="hopital.html">Hopital des 15-20 - Exercice graphique</a>
+                    <a href="koel.html">Centre Koel - Exercice pratique</a>
+                </div>
+            </div>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+
+    <!-- Scroll-Driven Rodeo Hero -->
+    <div id="hero-scroll-trigger" style="height: 170vh; position: relative;">
+        <section id="hero" class="hero-section"
+            style="position: sticky; top: 0; height: 100vh; background-color: transparent;">
+
+            <!-- Rodeo Cowboy Asset -->
+            <div class="rodeo-container">
+                <img src="assets/rodeo-cowboy.png" alt="Rodeo Cowboy" id="rodeoCowboy" class="rodeo-asset">
+            </div>
+
+            <div class="hero-content">
+                <h1 class="rye-text portfolio-title">Portfolio</h1>
+                <div class="hero-details">
+                    <span class="brittany-text name-title">Elya Prugnieres</span>
+                    <p class="subtitle">Communication Digitale | Événementiel & Culturel</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Layout Spacer for high respiration -->
+    <div style="height: 10vh;"></div>
+
+    <!-- About Section -->
+    <section id="about" class="section" style="background-color: var(--bg-color); position: relative; z-index: 1; padding: 60px 0;">
+        <div class="container" style="display: flex; gap: 40px; align-items: center;">
+
+            <!-- Bulle Message Wrapper (Drop Shadow) -->
+            <div id="about-bubble-wrapper" class="about-bubble-wrapper">
+
+                <!-- Bubble Ellipse -->
+                <div class="about-bubble">
+                    <div class="bubble-reflection"></div>
+                    <h2 class="section-title"
+                        style="font-family: var(--font-heading); margin-bottom: 25px; margin-top: 0; color: var(--text-color);">
+                        About me</h2>
+
+                    <p style="margin-bottom: 15px;">Je m’appelle <span class="bold">Elya Prugnières</span>, j’ai 21 ans
+                        et je suis étudiante en <span class="bold">BTS Communication</span>, que j'ai suivi en distanciel via le <span class="bold">CNED</span>.</p>
+                    <p style="margin-bottom: 15px;">Au cours de ces deux années, j’ai développé mes compétences en
+                        communication à travers mes
+                        <span class="bold">projets personnels</span>, <span class="bold">un Service Civique en
+                            communication digitale</span> chez A.D.R.E.S.S.E. à Cognac,
+                        <span class="bold">un stage en Communication Événementielle chez Charente Libre</span>, et <span
+                            class="bold">un stage en communication
+                            culturelle à la Corderie Royale de Rochefort</span>.
+                    </p>
+                    <p style="margin-bottom: 15px;">Créative et passionnée, je m’intéresse particulièrement aux animaux
+                        et à l’équitation, ce
+                        qui nourrit <span class="bold">mon sens de l’observation et de l’organisation</span>.</p>
+                    <p style="margin-top: 25px; font-weight: 700;">Pour l'année 2026-2027, je vais intégrer le <span class="bold">Bachelor Communication de l'ISCOM Bordeaux</span>, que je réaliserai en alternance au sein de l'entreprise <span class="bold">Africa Power Services</span>.</p>
+                    <a href="assets/cv.pdf" class="btn-primary" id="cv-button" download
+                        style="margin-top: 30px; display: inline-block;">
+                        <span class="wave-text">T</span><span class="wave-text">é</span><span class="wave-text">l</span><span class="wave-text">é</span><span class="wave-text">c</span><span class="wave-text">h</span><span class="wave-text">a</span><span class="wave-text">r</span><span class="wave-text">g</span><span class="wave-text">e</span><span class="wave-text">r</span> <span class="wave-text">m</span><span class="wave-text">o</span><span class="wave-text">n</span> <span class="wave-text">C</span><span class="wave-text">V</span>
+                    </a>
+                </div>
+
+                <!-- Queue de la bulle (ronde et en bas à gauche) -->
+                <svg style="position: absolute; bottom: -15px; left: 15%; width: 70px; height: 70px; z-index: 1;"
+                    viewBox="0 0 50 50">
+                    <path d="M 0 0 L 50 0 Q 50 50 0 50 Q 20 20 0 0 Z" fill="#ffffff" />
+                </svg>
+
+            </div>
+
+            <!-- Profile Photo -->
+            <div style="flex-shrink: 0; width: 400px; padding-left: 20px;">
+                <div class="photo-frame">
+                    <img src="assets/profile.jpg" alt="Elya Prugnieres" class="profile-photo">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CNED Section -->
+    <section class="section" style="background-color: var(--bg-color); padding: 40px 0;">
+        <div class="container">
+            <div class="cned-container">
+                <div class="cned-text-block">
+                    <p>
+                        Ma formation en BTS Communication est suivie à distance via le <strong>CNED (Centre National d'Enseignement à Distance)</strong>. 
+                        Ce format d'apprentissage exigeant requiert une grande autonomie, une organisation rigoureuse et une forte autodiscipline.
+                    </p>
+                </div>
+                <div class="cned-logo-block">
+                    <img src="assets/logos/cned_logo_169_2.png" alt="CNED Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parcours Section -->
+    <section id="parcours" class="section" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading); margin-bottom: 2rem;">Mon Parcours</h2>
+            
+            <div class="experience-stack-container">
+                <!-- Card 1: 2022 -->
+                <div class="experience-card" id="card-1">
+                    <div class="card-year">2022</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Baccalauréat Général</h3>
+                            <div class="company">Lycée</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Obtention du diplôme avec mention Très Bien.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: 2024 -->
+                <div class="experience-card" id="card-2">
+                    <div class="card-year">2024</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>BTS Communication</h3>
+                            <div class="company">CNED (Centre National d'Enseignement à Distance)</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Formation théorique et pratique suivie à distance, validant mes compétences opérationnelles en communication média et hors-média.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: 2024 -->
+                <div class="experience-card" id="card-3">
+                    <div class="card-year">2024</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Service Civique</h3>
+                            <div class="company">A.D.R.E.S.S.E. (Cognac)</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Mission de communication digitale (Facebook et Instagram) et valorisation de l'accompagnement à la réinsertion socioprofessionnelle.</p>
+                        </div>
+                        <div class="experience-footer">
+                            <img src="assets/Service Civique/logo adresse.png" alt="Logo Adresse" class="experience-logo">
+                            <a href="adresse.html" class="experience-btn">En savoir +</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: 2025 -->
+                <div class="experience-card" id="card-4">
+                    <div class="card-year">2025</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Stage Communication Événementielle</h3>
+                            <div class="company">Charente Libre</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Collaboration active à la planification, la logistique et la communication réseaux sociaux pour le Salon des Séniors et la remise des prix Charentais.</p>
+                        </div>
+                        <div class="experience-footer">
+                            <img src="assets/logo charente libre.png" alt="Logo Charente Libre" class="experience-logo">
+                            <a href="charente.html" class="experience-btn">En savoir +</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: 2026 -->
+                <div class="experience-card" id="card-5">
+                    <div class="card-year">2026</div>
+                    <div class="experience-card-content">
+                        <div class="experience-header">
+                            <h3>Stage Communication Culturelle</h3>
+                            <div class="company">La Corderie Royale de Rochefort</div>
+                        </div>
+                        <div class="experience-body">
+                            <p>Création graphique de supports PAO, montage vidéo et gestion des réseaux sociaux (Instagram et Facebook) pour l'exposition temporaire TOTEMS.</p>
+                        </div>
+                        <div class="experience-footer">
+                            <img src="assets/logo corderie.svg" alt="Logo Corderie Royale" class="experience-logo">
+                            <a href="corderie.html" class="experience-btn">En savoir +</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section alternate-bg" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Mes Compétences</h2>
+            
+            <div class="skills-grid" style="margin-top: 3rem;">
+                <!-- Card 1: Création de contenu -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-mobile-screen-button"></i>
+                    <h3>Création de contenu</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Création de visuels pour les réseaux sociaux</li>
+                        <li>Production de contenus photo et vidéo</li>
+                        <li>Rédaction de contenus digitaux (posts, newsletters)</li>
+                        <li>Conception de supports de communication</li>
+                        <li>Adaptation des contenus selon la cible et le format</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Community Management -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-camera"></i>
+                    <h3>Community Management</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Gestion et animation de réseaux sociaux</li>
+                        <li>Planification et programmation des publications</li>
+                        <li>Mise en place de stratégies de contenu</li>
+                        <li>Interaction et engagement avec la communauté</li>
+                        <li>Veille des tendances social media</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Stratégie digitale -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Stratégie digitale</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Analyse des performances des publications</li>
+                        <li>Suivi des indicateurs clés (KPI)</li>
+                        <li>Identification des cibles et des objectifs</li>
+                        <li>Optimisation des actions de communication</li>
+                        <li>Référencement et visibilité des contenus</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Gestion de projet -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-tasks"></i>
+                    <h3>Gestion de projet</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Organisation d'événements</li>
+                        <li>Coordination avec partenaires et intervenants</li>
+                        <li>Gestion logistique de projets</li>
+                        <li>Planification des actions de communication</li>
+                        <li>Création de calendriers éditoriaux</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Communication visuelle -->
+                <div class="skill-card">
+                    <div class="skill-card-shine"></div>
+                    <i class="fas fa-palette"></i>
+                    <h3>Communication visuelle</h3>
+                    <ul style="list-style: disc; text-align: left; padding-left: 20px; color: #555;">
+                        <li>Conception d’identités visuelles simples</li>
+                        <li>Création de supports print et digitaux</li>
+                        <li>Mise en page de documents</li>
+                        <li>Respect d’une charte graphique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Marquee Section -->
+    <section class="marquee-container" style="margin: 60px 0;">
+        <div class="marquee-track">
+            <!-- First Set -->
+            <img src="assets/logos/Adobe_InDesign_CC_icon.svg.png" alt="InDesign">
+            <img src="assets/logos/Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop">
+            <img src="assets/logos/Adobe_Photoshop_Lightroom_CC_logo.svg.png" alt="Lightroom">
+            <img src="assets/logos/adobe-illustrator-logo-png_seeklogo-380559.png" alt="Illustrator">
+            <img src="assets/logos/WordPress.com-Logo.wine.png" alt="WordPress">
+            <img src="assets/logos/Facebook-logo.png" alt="Facebook">
+            <img src="assets/logos/logo-linkedin-rond.webp" alt="LinkedIn">
+            <img src="assets/logos/logo-tiktok-cercle-noir-emblematique-notes-blanches-turquoise-roses_1131634-485.jpg.avif" alt="TikTok">
+            <img src="assets/logos/images.png" alt="Logo">
+            <img src="assets/logos/images-2.png" alt="Logo">
+            <img src="assets/logos/illustration-artistique_929495-37.jpg.avif" alt="Logo">
+            <img src="assets/logos/303e9a311345513d81eece6c37a3a1b1-2.png" alt="Pinterest Logo">
+            <img src="assets/logos/Canva-Embleme.png" alt="Canva Transparent">
+            <!-- Duplicate for seamless scrolling -->
+            <img src="assets/logos/Adobe_InDesign_CC_icon.svg.png" alt="InDesign">
+            <img src="assets/logos/Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop">
+            <img src="assets/logos/Adobe_Photoshop_Lightroom_CC_logo.svg.png" alt="Lightroom">
+            <img src="assets/logos/adobe-illustrator-logo-png_seeklogo-380559.png" alt="Illustrator">
+            <img src="assets/logos/WordPress.com-Logo.wine.png" alt="WordPress">
+            <img src="assets/logos/Facebook-logo.png" alt="Facebook">
+            <img src="assets/logos/logo-linkedin-rond.webp" alt="LinkedIn">
+            <img src="assets/logos/logo-tiktok-cercle-noir-emblematique-notes-blanches-turquoise-roses_1131634-485.jpg.avif" alt="TikTok">
+            <img src="assets/logos/images.png" alt="Logo">
+            <img src="assets/logos/images-2.png" alt="Logo">
+            <img src="assets/logos/illustration-artistique_929495-37.jpg.avif" alt="Logo">
+            <img src="assets/logos/303e9a311345513d81eece6c37a3a1b1-2.png" alt="Pinterest Logo">
+            <img src="assets/logos/Canva-Embleme.png" alt="Canva Transparent">
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading); margin-bottom: 3rem;">Mes Projets</h2>
+            
+            <div class="projects-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto;">
+                <!-- Block 1: Service Civique (Adresse) -->
+                <a href="adresse.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Brochure_Mockup_3.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Groupe Adresse</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Service Civique</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 2: Aquarium de La Rochelle -->
+                <a href="aquarium.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Citylight_Mockup_3.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Aquarium de La Rochelle</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 3: Les Antilles de Jonzac -->
+                <a href="antilles.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Bus_Stop_Citylight_Mockup.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Les Antilles de Jonzac</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 4: Antares -->
+                <a href="antares.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Citylight_Mockup_1.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Antares</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 5: CGR Cinéma -->
+                <a href="cgr.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/A4_Brochure_Mockup_3.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">CGR Cinéma</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Campagne Fictive</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 6: Charente Libre -->
+                <a href="charente.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Charente libre/mockup charente libre1.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Charente Libre</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Stage Événementiel</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 7: Corderie Royale -->
+                <a href="corderie.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Corderie Royale/atelier poisson.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Corderie Royale</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Stage Culturel</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 8: Hopital des 15-20 -->
+                <a href="hopital.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Projet Hopital des 15-20/mockup hopital.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Hôpital des 15-20</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Exercice Graphique</span>
+                </div>
+                </div>
+                </a>
+
+                <!-- Block 9: Centre Koel -->
+                <a href="koel.html" class="project-link" style="text-decoration: none; display: block; position: relative;">
+                <div class="project-block" style="aspect-ratio: 4/3; background: #ffffff url('assets/Projet Centre Koel/Instagram Post Story Mockup.png') center/cover no-repeat; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="project-overlay" style="position: absolute; inset: 0; background: rgba(82, 57, 40, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; border-radius: 12px; gap: 10px;">
+                <span style="color: #fff; font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 2px;">Centre Koel</span>
+                <span style="color: #f2a501; font-family: var(--font-secondary); font-size: 1rem; font-style: italic;">Exercice Pratique</span>
+                </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mes Photos Section -->
+    <section id="photos" class="section alternate-bg" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Mes Photos</h2>
+            
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2411 copie.JPG" alt="Elya Prugnieres - Photo 1" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-9.png" alt="Elya Prugnieres - Photo 2" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-8.png" alt="Elya Prugnieres - Photo 3" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Maneskinn & Romana-3.png" alt="Elya Prugnieres - Photo 4" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Maneskinn & Romana-2.png" alt="Elya Prugnieres - Photo 5" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Maneskinn & Romana-1.png" alt="Elya Prugnieres - Photo 6" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2432 copie.JPG" alt="Elya Prugnieres - Photo 7" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2415 copie.JPG" alt="Elya Prugnieres - Photo 8" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2443 copie.JPG" alt="Elya Prugnieres - Photo 9" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/IMG_2418 copie.JPG" alt="Elya Prugnieres - Photo 10" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-3.png" alt="Elya Prugnieres - Photo 11" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-2.png" alt="Elya Prugnieres - Photo 12" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-10.png" alt="Elya Prugnieres - Photo 13" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-1.png" alt="Elya Prugnieres - Photo 14" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-5.png" alt="Elya Prugnieres - Photo 15" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-4.png" alt="Elya Prugnieres - Photo 16" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-6.png" alt="Elya Prugnieres - Photo 17" >
+                </div>
+                <div class="photo-item">
+                    <img src="assets/Photos/Sans titre-7.png" alt="Elya Prugnieres - Photo 18" >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="photo-lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Vue agrandie">
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="padding: 60px 0;">
+        <div class="container text-center" style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span style="font-family: 'Rye', serif; display: block; font-size: 3rem; line-height: 1.2; color: var(--text-color);">Travaillons</span>
+                <span style="font-family: 'Brittany Signature', cursive; display: block; font-size: 4rem; color: #a68554; text-transform: capitalize; margin-top: -15px;">Ensemble</span>
+            </h2>
+            
+            
+
+            <!-- Contact Information Bubbles -->
+            <div class="contact-info-container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:elyachon@gmail.com" class="contact-card-bubble">
+                    elyachon@gmail.com
+                </a>
+                <a href="tel:0767999603" class="contact-card-bubble">
+                    07 67 99 96 03
+                </a>
+                <div class="contact-card-bubble" style="cursor: default; position: relative;">
+                    Elya Prugnières
+                    <!-- Correct Cursor Indicator from curseur.svg -->
+                    <img src="assets/curseur.svg" class="cursor-click-indicator" alt="Indicateur curseur">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center p-4">
+        <p>&copy; 2026 Elya Prugnieres. Portfolio Western Moderne.</p>
+    </footer>
+
+
+<script src="js/preload.js" defer></script>
+</body>
+
+</html>
