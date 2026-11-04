@@ -1658,3 +1658,21 @@ footer { background: #2E1442; color: #FBF1E6; font-weight: 500; letter-spacing: 
 
 /* L'étincelle sous le titre ne doit pas chevaucher le texte de la bulle */
 .about-bubble .section-title::after { display: none; }
+
+/* Lien « Retour » : bouton en pilule */
+.back-btn {
+    background: #2E1442;
+    color: #FBF1E6;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: 2px solid #2E1442;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.back-btn:hover { background: #C1E60A; border-color: #C1E60A; color: #2E1442; transform: translateX(-5px); }
+.back-btn i { font-size: 0.8rem; }
