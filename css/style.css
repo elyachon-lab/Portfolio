@@ -1,16 +1,16 @@
 :root {
-    --primary-color: #a68554;
+    --primary-color: #F0266E;
     /* Golden Tan (Requested Orange Replacement) */
-    --secondary-color: #562F00;
+    --secondary-color: #2E1442;
     /* Dark Brown */
-    --accent-color: #FFCE99;
+    --accent-color: #BCBCFD;
     /* Light Orange/Peach */
-    --bg-color: #f7f7ef;
+    --bg-color: #FBF1E6;
     /* Updated Beige */
-    --text-color: #562F00;
-    --font-main: 'Poppins', sans-serif;
-    --font-heading: 'Rye', cursive;
-    --font-secondary: 'Playfair Display', serif;
+    --text-color: #2E1442;
+    --font-main: 'Fraunces', Georgia, serif;
+    --font-heading: 'Shrikhand', Georgia, serif;
+    --font-secondary: 'Fraunces', Georgia, serif;
     --transition: all 0.3s ease;
 }
 
@@ -26,7 +26,7 @@
 
 body {
     background-color: var(--bg-color);
-    /* #f7f7ef */
+    /* #FBF1E6 */
     color: var(--text-color);
     font-family: var(--font-main);
     line-height: 1.6;
@@ -93,7 +93,7 @@ h3 {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(82, 57, 40, 0.88);
+    background: rgba(46,20,66, 0.88);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 15px 30px;
@@ -149,7 +149,7 @@ h3 {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: #523928;
+    background: #2E1442;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     padding: 10px 0;
@@ -238,7 +238,7 @@ h3 {
 }
 
 .brittany-text {
-    font-family: 'Brittany Signature', cursive;
+    font-family: 'Shrikhand', Georgia, serif;
     font-size: 89px;
     color: var(--primary-color);
     line-height: 1.4;
@@ -247,7 +247,7 @@ h3 {
 }
 
 .subtitle {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-size: 1.5rem;
     font-weight: 700;
     margin-top: 40px;
@@ -283,7 +283,7 @@ h3 {
     position: sticky;
     top: 15vh;
     background-color: #ffffff;
-    border: 2px solid #a68554;
+    border: 2px solid #F0266E;
     border-radius: 20px;
     padding: 3rem;
     margin-bottom: 8vh;
@@ -319,13 +319,13 @@ h3 {
     font-family: var(--font-secondary);
     font-size: 1.4rem;
     font-style: italic;
-    color: #8a6d45;
+    color: #6E5E86;
     margin-bottom: 1.5rem;
 }
 
 .experience-body p {
     font-size: 1.15rem;
-    color: #444;
+    color: #5B4A72;
     line-height: 1.7;
     margin-bottom: 2rem;
 }
@@ -349,7 +349,7 @@ h3 {
 
 .experience-btn {
     display: inline-block;
-    background-color: #562F00;
+    background-color: #2E1442;
     /* Dark Brown Rectangle */
     color: #ffffff;
     text-decoration: none;
@@ -358,19 +358,19 @@ h3 {
     padding: 12px 28px;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    border: 2px solid #562F00;
+    border: 2px solid #2E1442;
 }
 
 .experience-btn:hover {
     background-color: transparent;
-    color: #562F00;
+    color: #2E1442;
     transform: translateY(-3px);
 }
 
 /* Scroll Color Block Interaction */
 .scroll-color-block {
     position: relative;
-    background-color: #523928;
+    background-color: #2E1442;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -392,7 +392,7 @@ h3 {
 /* About Me Bubble Refinement */
 .about-bubble-wrapper {
     flex: 1;
-    filter: drop-shadow(0 20px 40px rgba(86, 47, 0, 0.08));
+    filter: drop-shadow(0 20px 40px rgba(46,20,66, 0.08));
     position: relative;
     z-index: 2;
     will-change: transform;
@@ -410,7 +410,7 @@ h3 {
 }
 
 #cv-button {
-    color: #523928;
+    color: #2E1442;
     /* Dark brown text */
     font-family: var(--font-heading);
     font-weight: 700;
@@ -574,7 +574,7 @@ h3 {
 
 .lightbox-close:hover,
 .lightbox-close:focus {
-    color: #f2a501;
+    color: #F0266E;
     text-decoration: none;
 }
 
@@ -594,12 +594,12 @@ h3 {
 }
 
 .contact-card-bubble {
-    background-color: #562F00;
+    background-color: #2E1442;
     /* Dark Brown */
     color: #ffffff;
     padding: 15px 35px;
     border-radius: 50px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-size: 1.1rem;
     font-weight: 700;
     text-decoration: none;
@@ -609,13 +609,13 @@ h3 {
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 2px solid #562F00;
+    border: 2px solid #2E1442;
 }
 
 .contact-card-bubble:hover {
     transform: translateY(-5px);
     background-color: transparent;
-    color: #562F00;
+    color: #2E1442;
 }
 
 /* Cursor Indicator Overlay */
@@ -646,7 +646,7 @@ h3 {
 .stat-circle {
     width: 170px;
     height: 170px;
-    background-color: #f2a501;
+    background-color: #F0266E;
     border-radius: 50%;
     margin: 0 auto 1.5rem auto;
     display: flex;
@@ -663,7 +663,7 @@ h3 {
 .stat-desc {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #444;
+    color: #5B4A72;
 }
 
 @keyframes scroll-marquee {
@@ -707,7 +707,7 @@ h3 {
     left: 10%;
     width: 80%;
     height: 20px;
-    background: radial-gradient(ellipse at center, rgba(166, 133, 84, 0.5) 0%, rgba(166, 133, 84, 0) 70%);
+    background: radial-gradient(ellipse at center, rgba(240,38,110, 0.5) 0%, rgba(240,38,110, 0) 70%);
     border-radius: 50%;
     filter: blur(10px);
     opacity: 0;
@@ -892,7 +892,7 @@ h3 {
     left: 10%;
     width: 80%;
     height: 30px;
-    background: radial-gradient(ellipse at center, rgba(166, 133, 84, 0.4) 0%, rgba(166, 133, 84, 0) 70%);
+    background: radial-gradient(ellipse at center, rgba(240,38,110, 0.4) 0%, rgba(240,38,110, 0) 70%);
     border-radius: 50%;
     filter: blur(15px);
     opacity: 0;
@@ -927,7 +927,7 @@ h3 {
 .mockup-block .project-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(82, 57, 40, 0.6);
+    background: rgba(46,20,66, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -986,7 +986,7 @@ h3 {
     background-color: #ffffff;
     border-radius: 25px;
     padding: 30px 45px;
-    box-shadow: 0 20px 40px rgba(86, 47, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(46,20,66, 0.08);
     /* Matches about bubble shadow */
     border: 2px solid var(--primary-color);
     flex: 0 0 75%;
@@ -1058,13 +1058,13 @@ h3 {
     background-size: cover;
     background-position: center;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(82, 57, 40, 0.08);
+    box-shadow: 0 10px 30px rgba(46,20,66, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     cursor: pointer;
-    border: 1px solid rgba(82, 57, 40, 0.05);
+    border: 1px solid rgba(46,20,66, 0.05);
     overflow: hidden;
     color: #ffffff;
     text-decoration: none;
@@ -1074,7 +1074,7 @@ h3 {
 .sub-project-card .card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(82, 57, 40, 0.3);
+    background: rgba(46,20,66, 0.3);
     /* Subtle initial overlay */
     display: flex;
     align-items: center;
@@ -1085,12 +1085,12 @@ h3 {
 }
 
 .sub-project-card:hover .card-overlay {
-    background: rgba(82, 57, 40, 0.6);
+    background: rgba(46,20,66, 0.6);
 }
 
 .sub-project-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 45px rgba(82, 57, 40, 0.12);
+    box-shadow: 0 20px 45px rgba(46,20,66, 0.12);
 }
 
 .sub-project-card .card-placeholder {
@@ -1103,7 +1103,7 @@ h3 {
 }
 
 .sub-project-card .card-placeholder.no-img {
-    color: #523928;
+    color: #2E1442;
     opacity: 0.3;
 }
 
@@ -1122,7 +1122,7 @@ h3 {
     gap: 10px;
     background: transparent;
     border: none;
-    color: #523928;
+    color: #2E1442;
     font-family: var(--font-heading);
     font-size: 1.1rem;
     cursor: pointer;
@@ -1132,14 +1132,14 @@ h3 {
 }
 
 .back-btn:hover {
-    color: #f2a501;
+    color: #F0266E;
     transform: translateX(-5px);
 }
 
 .project-detail-title {
     font-family: var(--font-heading);
     font-size: 4rem;
-    color: #523928;
+    color: #2E1442;
     text-transform: uppercase;
     margin-bottom: 3rem;
     text-align: center;
@@ -1176,15 +1176,15 @@ h3 {
     padding: 30px;
     background: #fff;
     border-radius: 0;
-    box-shadow: 0 10px 30px rgba(82, 57, 40, 0.05);
-    border: 1px solid rgba(82, 57, 40, 0.05);
+    box-shadow: 0 10px 30px rgba(46,20,66, 0.05);
+    border: 1px solid rgba(46,20,66, 0.05);
     transform: translateX(50px);
     text-align: left;
 }
 
 .project-detail-sticky h4 {
     font-family: var(--font-heading);
-    color: #523928;
+    color: #2E1442;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -1194,7 +1194,7 @@ h3 {
     font-size: 1.05rem;
     /* Slightly larger text for better prominence */
     line-height: 1.8;
-    color: #444;
+    color: #5B4A72;
     margin-bottom: 1.2rem;
 }
 
@@ -1351,27 +1351,27 @@ h3 {
     justify-content: center;
     margin: 80px 0 40px;
     padding-top: 40px;
-    border-top: 1px solid rgba(82, 57, 40, 0.05);
+    border-top: 1px solid rgba(46,20,66, 0.05);
 }
 
 .all-projects-btn {
     padding: 1.2rem 3rem;
     font-family: var(--font-heading);
-    background: #523928;
-    color: #f7f7ef;
+    background: #2E1442;
+    color: #FBF1E6;
     border: none;
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(82, 57, 40, 0.15);
+    box-shadow: 0 10px 20px rgba(46,20,66, 0.15);
 }
 
 .all-projects-btn:hover {
-    background: #3d2a1d;
+    background: #2E1442;
     transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(82, 57, 40, 0.2);
+    box-shadow: 0 15px 30px rgba(46,20,66, 0.2);
 }
 
 .all-projects-btn:active {
@@ -1420,7 +1420,7 @@ h3 {
     gap: 12px;
     color: #d1d1d1;
     font-size: 0.75rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     margin-top: -45px;
     /* Pull it closer to the gallery to counteract the 60px flex gap */
     margin-bottom: 10px;
@@ -1505,5 +1505,5 @@ h3 {
 }
 
 .insta-link:hover {
-    color: #523928 !important;
+    color: #2E1442 !important;
 }
