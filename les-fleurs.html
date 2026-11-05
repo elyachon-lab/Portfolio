@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="description" content="Premières idées de contenus Instagram pour la boutique Les Fleurs, par Elya Prugnières : Reels, rendez-vous récurrents et organisation de la collaboration.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elya Prugnieres | Idées pour Les Fleurs</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rye&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lf-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .lf-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 1rem auto 0;
+            max-width: 780px;
+        }
+
+        .lf-card {
+            flex: 1 1 300px;
+            max-width: 360px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+
+        .lf-card i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .lf-card h3 {
+            font-family: var(--font-secondary);
+            color: var(--text-color);
+            margin: 0 0 10px;
+        }
+
+        .lf-card p {
+            margin: 0;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .lf-steps {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            text-align: left;
+            display: grid;
+            gap: 20px;
+        }
+
+        .lf-step {
+            background: #fff;
+            border-radius: 15px;
+            padding: 22px 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .lf-step strong {
+            color: var(--text-color);
+        }
+
+        .lf-refs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 1rem auto 0;
+        }
+
+        .lf-ref {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .lf-ref .lf-ref-img {
+            aspect-ratio: 4 / 3;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            background-color: #fff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .lf-ref:hover .lf-ref-img {
+            transform: translateY(-6px);
+        }
+
+        .lf-ref h4 {
+            font-family: var(--font-secondary);
+            color: var(--text-color);
+            margin: 15px 0 5px;
+        }
+
+        .lf-ref p {
+            margin: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .lf-note {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="index.html#photos">Mes Photos</a>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Expériences</span>
+                <div class="nav-dropdown-menu">
+                    <a href="adresse.html">Groupe Adresse : Service Civique</a>
+                    <a href="charente.html">Charente Libre</a>
+                    <a href="corderie.html">Corderie Royale</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-toggle">Mes Projets</span>
+                <div class="nav-dropdown-menu">
+                    <a href="aquarium.html">Aquarium de La Rochelle - Campagne Fictive</a>
+                    <a href="antilles.html">Les Antilles de Jonzac - Campagne fictive</a>
+                    <a href="antares.html">Antares - Campagne fictive</a>
+                    <a href="cgr.html">CGR Cinéma - Campagne fictive</a>
+                    <a href="hopital.html">Hopital des 15-20 - Exercice graphique</a>
+                    <a href="koel.html">Centre Koel - Exercice pratique</a>
+                </div>
+            </div>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Titre -->
+    <section class="section" style="padding: 80px 0 30px;">
+        <div class="container text-center">
+            <h1 style="margin: 0; display: flex; flex-direction: column; gap: 5px; align-items: center;">
+                <span style="font-family: 'Brittany Signature', cursive; font-size: 4.5rem; color: #f2a501; font-weight: normal; line-height: 1.4; padding-top: 15px; text-transform: none;">Des idées pour</span>
+                <span style="font-family: var(--font-heading); font-size: 3rem; color: #523928; text-transform: uppercase;">Les Fleurs</span>
+            </h1>
+            <p class="lf-intro" style="margin-top: 2rem;">
+                En découvrant votre annonce, j'ai tout de suite imaginé comment faire vivre la boutique sur Instagram.
+                Voici quelques premières pistes, à affiner ensemble selon vos envies, vos nouveautés et votre rythme.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pistes de contenus -->
+    <section class="section" style="padding: 40px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Premières pistes de contenus</h2>
+
+            <div class="lf-grid">
+                <div class="lf-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Découvrir la boutique</h3>
+                    <p>Un Reel qui fait entrer dans la boutique comme on la découvre en poussant la porte, de rayon en rayon : la papeterie, les cartes postales, les petites trouvailles.</p>
+                </div>
+                <div class="lf-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Les trouvailles du moment</h3>
+                    <p>Un rendez-vous régulier pour mettre en avant un produit ou une sélection, en photo, en carrousel ou en story, avec le même soin visuel à chaque fois.</p>
+                </div>
+                <div class="lf-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>Les coulisses</h3>
+                    <p>Des stories sur la mise en rayon, l'arrivée des nouveautés et le choix des produits, pour montrer l'envers du décor et créer de la proximité.</p>
+                </div>
+                <div class="lf-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Les cartes postales</h3>
+                    <p>Une série autour des cartes postales : une carte mise en scène, une idée de message à envoyer, pour donner envie de les partager.</p>
+                </div>
+            </div>
+
+            <p class="lf-note">Ces idées sont des propositions de départ : je les adapterai à votre univers et à ce qui vous ressemble.</p>
+        </div>
+    </section>
+
+    <!-- Organisation -->
+    <section class="section alternate-bg" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Une organisation simple</h2>
+            <p class="lf-intro" style="margin-top: 0.5rem;">
+                Pour un format de 4 à 5 jours par mois, je propose de travailler par sessions, afin de garder une présence régulière sans vous demander de temps.
+            </p>
+
+            <div class="lf-steps">
+                <div class="lf-step"><strong>1. Un calendrier éditorial</strong> : les grands rendez-vous du mois, validés avec vous à l'avance.</div>
+                <div class="lf-step"><strong>2. Une session de création</strong> : photos et vidéos réalisées en une fois (sur place ou à distance selon le format de la collaboration), puis montage et mise en forme.</div>
+                <div class="lf-step"><strong>3. Une programmation et un suivi</strong> : publication régulière, réponses à la communauté et petit bilan de ce qui fonctionne pour ajuster le mois suivant.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Références Instagram -->
+    <section class="section" style="padding: 60px 0;">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-family: var(--font-heading);">Mes réalisations pour les réseaux sociaux</h2>
+
+            <div class="lf-refs">
+                <a href="corderie.html" class="lf-ref">
+                    <div class="lf-ref-img" style="background-image: url('assets/Corderie Royale/Post TOTEMS.png');"></div>
+                    <h4>La Corderie Royale</h4>
+                    <p>Posts, stories et vidéos pour l'exposition TOTEMS.</p>
+                </a>
+                <a href="koel.html" class="lf-ref">
+                    <div class="lf-ref-img" style="background-image: url('assets/Projet Centre Koel/Instagram Post Story Mockup.png');"></div>
+                    <h4>Centre Koel</h4>
+                    <p>Création de posts et de stories Instagram.</p>
+                </a>
+                <a href="adresse.html" class="lf-ref">
+                    <div class="lf-ref-img" style="background-image: url('assets/Brochure_Mockup_3.png');"></div>
+                    <h4>Groupe Adresse</h4>
+                    <p>Communication digitale sur Facebook et Instagram.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section" style="padding: 60px 0;">
+        <div class="container text-center" style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span style="font-family: 'Rye', serif; display: block; font-size: 3rem; line-height: 1.2; color: var(--text-color);">Parlons-en</span>
+                <span style="font-family: 'Brittany Signature', cursive; display: block; font-size: 4rem; color: #a68554; text-transform: capitalize; margin-top: -15px;">Ensemble</span>
+            </h2>
+
+            <div class="contact-info-container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:elyachon@gmail.com" class="contact-card-bubble">elyachon@gmail.com</a>
+                <a href="tel:0767999603" class="contact-card-bubble">07 67 99 96 03</a>
+                <a href="index.html" class="contact-card-bubble">Voir tout mon portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center p-4">
+        <p>&copy; 2026 Elya Prugnieres. Portfolio Western Moderne.</p>
+    </footer>
+
+    <script>
+        // Curseur personnalisé
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
+
+<script src="js/preload.js" defer></script>
+</body>
+
+</html>
