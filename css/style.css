@@ -361,10 +361,16 @@ h3 {
 }
 
 .experience-logo {
-    width: 150px;
-    height: 60px;
+    width: 165px;
+    height: 66px;
     object-fit: contain;
     display: block;
+}
+
+/* Le logo ISCOM garde sa taille d'origine */
+.experience-logo.logo-iscom {
+    width: 150px;
+    height: 60px;
 }
 
 .experience-btn {
