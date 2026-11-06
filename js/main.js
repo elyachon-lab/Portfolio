@@ -112,8 +112,8 @@ sections.forEach(section => {
 // 3. Scroll-Driven Rodeo Animation
 const rodeoCowboy = document.getElementById('rodeoCowboy');
 if (rodeoCowboy) {
-    // A. Simplified Background (Just ensuring it stays beige)
-    gsap.set("body", { backgroundColor: "#f7f7ef" });
+    // A. Simplified Background (Just ensuring it stays cream)
+    gsap.set("body", { backgroundColor: "#FBF1E6" });
 
     // B. Rodeo Bucking Logic (Constant Energy "Phase 4" refinement)
     // Decoupled from velocity - triggers intense jerks on ANY scroll update.
